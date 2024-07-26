@@ -4,6 +4,8 @@ public class Peca {
     private boolean cor; // 0 = branco, 1 = preto
     private char simbolo; // 'P' ou 'p' = peão 'R' ou 'r' = torre, 'K' ou 'k' = cavalo, 'B' ou 'b' = bispo, 'Q' ou 'q' = rainha, 'K' ou 'k' = rei
     private Pos posicao;
+    private static final int DIMENSAO = 8;
+    private Peca tabuleiro[][];
 
     public Peca(boolean cor, char simbolo, Pos posicao) {
         this.cor = cor;
@@ -33,5 +35,41 @@ public class Peca {
 
     public void setPosicao(Pos posicao) {
         this.posicao = posicao;
+    }
+
+    public boolean testaMovimento (Pos posicaoAtual, Pos destino) {
+        return false;
+    }
+    
+    public boolean estaNosLimites(Pos destino) {
+        if (destino.x >= 0 && destino.x <= DIMENSAO) {
+            if (destino.y >= 0 && destino.y <= DIMENSAO) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Peca pecaAtingida(Pos destino) {
+        for(int i=0; i < DIMENSAO; i++) {
+            for (int j=0; j < DIMENSAO; j++) {
+                if(tabuleiro[i][j].posicao.x == destino.x && tabuleiro[i][j].posicao.y == destino.y && tabuleiro[i][j] != this) {
+                    return tabuleiro[i][j];
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean casaValida(Pos destino) {
+        Peca pecaAtingida = pecaAtingida(destino);
+
+        if(pecaAtingida == null) { // casa nao ocupada por nenhuma peca
+            return true;
+        }
+        else if(this.cor =! pecaAtingida.cor) { //peca eh de cor diferente, entao pode capturar
+            return true;
+        }
+        return false;
     }
 }
