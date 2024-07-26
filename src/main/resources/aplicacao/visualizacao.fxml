@@ -32,69 +32,69 @@
       <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="7" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="6" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="5" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="4" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="3" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.rowIndex="2" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.columnIndex="2" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="1" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" />
-      <Button id="lightButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" />
-      <Button id="darkButtons" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER" textFill="TRANSPARENT" />
+      <Button id="C2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Button id="H1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+      <Button id="H2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+      <Button id="G1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+      <Button id="F1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+      <Button id="E1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+      <Button id="D1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+      <Button id="C1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Button id="B1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Button id="A1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="7" />
+      <Button id="B2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Button id="A2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="6" />
+      <Button id="A3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="5" />
+      <Button id="B3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button id="A4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="4" />
+      <Button id="B4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button id="C4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Button id="C3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Button id="D3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <Button id="D2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <Button id="E2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+      <Button id="E4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <Button id="D4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <Button id="E3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      <Button id="F4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+      <Button id="G4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+      <Button id="H4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+      <Button id="F3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+      <Button id="G3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+      <Button id="H3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+      <Button id="F2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+      <Button id="G2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+      <Button id="B5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button id="A5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="3" />
+      <Button id="A6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.rowIndex="2" />
+      <Button id="B6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button id="B7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button id="B8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="1" />
+      <Button id="C8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.columnIndex="2" />
+      <Button id="A7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.rowIndex="1" />
+      <Button id="H5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+      <Button id="G5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+      <Button id="H7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+      <Button id="F5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+      <Button id="E5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Button id="D5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Button id="C5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Button id="H6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+      <Button id="G6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+      <Button id="D6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <Button id="C6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" textAlignment="CENTER" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Button id="E6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+      <Button id="F6" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+      <Button id="E7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Button id="D7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <Button id="C7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Button id="D8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="3" />
+      <Button id="E8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="4" />
+      <Button id="G7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+      <Button id="F7" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+      <Button id="H8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="7" />
+      <Button id="G8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="6" />
+      <Button id="F8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="lightButtons" text="Button" textFill="TRANSPARENT" GridPane.columnIndex="5" />
+      <Button id="A8" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="darkButtons" textAlignment="CENTER" textFill="TRANSPARENT" />
    </children>
 </GridPane>

@@ -1,6 +1,6 @@
-#lightButtons{
+.lightButtons{
     -fx-background-color: #604848;
 }
-#darkButtons{
+.darkButtons{
     -fx-background-color: #c0c0a8;
 }

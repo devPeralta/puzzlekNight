@@ -11,4 +11,6 @@ public class Controle {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+
+    //public void
 }
