@@ -72,4 +72,52 @@ public class Peca {
         }
         return false;
     }
+
+    public boolean pecaNaFrenteLinhaReta(Pos destino) {
+        // movendo p/ esquerda
+        for(int c = posicao.y-1; c > destino.y; c--){
+            for (int i = 0; i < DIMENSAO; i++) {
+                for (int j = 0; j < DIMENSAO; i++) {
+                    if(tabuleiro[i][j].posicao.y == c && tabuleiro[i][j].posicao.x == destino.x) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // movendo p/ direita
+        for(int c = posicao.y+1; c < destino.y; c++){
+            for (int i = 0; i < DIMENSAO; i++) {
+                for (int j = 0; j < DIMENSAO; i++) {
+                    if(tabuleiro[i][j].posicao.y == c && tabuleiro[i][j].posicao.x == destino.x) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // movendo p/ cima
+        for(int r = posicao.x-1; r > destino.x; r--){
+            for (int i = 0; i < DIMENSAO; i++) {
+                for (int j = 0; j < DIMENSAO; i++) {
+                    if(tabuleiro[i][j].posicao.y == destino.y && tabuleiro[i][j].posicao.x == r) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // movendo p/ baixo
+        for(int r = posicao.x+1; r < destino.x; r++){
+            for (int i = 0; i < DIMENSAO; i++) {
+                for (int j = 0; j < DIMENSAO; i++) {
+                    if(tabuleiro[i][j].posicao.y == destino.y && tabuleiro[i][j].posicao.x == r) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 }
