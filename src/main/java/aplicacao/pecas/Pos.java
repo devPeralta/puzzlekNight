@@ -1,4 +1,4 @@
-package aplicacao;
+package aplicacao.pecas;
 
 public class Pos {
     private int x;

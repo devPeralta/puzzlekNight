@@ -1,4 +1,4 @@
-package aplicacao;
+package aplicacao.pecas;
 
 public class Peca {
     private boolean cor; // 0 = branco, 1 = preto
@@ -42,8 +42,8 @@ public class Peca {
     }
     
     public boolean estaNosLimites(Pos destino) {
-        if (destino.x >= 0 && destino.x <= DIMENSAO) {
-            if (destino.y >= 0 && destino.y <= DIMENSAO) {
+        if (destino.getX() >= 0 && destino.getX() <= DIMENSAO) {
+            if (destino.getY() >= 0 && destino.getY() <= DIMENSAO) {
                 return true;
             }
         }
@@ -53,7 +53,7 @@ public class Peca {
     public Peca pecaAtingida(Pos destino) {
         for(int i=0; i < DIMENSAO; i++) {
             for (int j=0; j < DIMENSAO; j++) {
-                if(tabuleiro[i][j].posicao.x == destino.x && tabuleiro[i][j].posicao.y == destino.y && tabuleiro[i][j] != this) {
+                if(tabuleiro[i][j].posicao.getX() == destino.getX() && tabuleiro[i][j].posicao.getY() == destino.getY() && tabuleiro[i][j] != this) {
                     return tabuleiro[i][j];
                 }
             }
