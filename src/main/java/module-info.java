@@ -3,6 +3,6 @@ module application {
     requires javafx.fxml;
 
 
-    opens application to javafx.fxml;
-    exports application;
+    opens aplicacao to javafx.fxml;
+    exports aplicacao;
 }
