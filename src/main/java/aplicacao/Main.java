@@ -30,7 +30,7 @@ public class Main extends Application {
         Jogo.pngTabuleiroClear();
         Jogo jogo1 = new Jogo();
         jogo1.carregaNovoProblema();
-        Peca[][] tabuleiro = jogo1.tabuleiro;
+        Peca[][] tabuleiro = jogo1.getTabuleiro();
 
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
