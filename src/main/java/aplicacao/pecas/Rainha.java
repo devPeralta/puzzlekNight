@@ -20,7 +20,7 @@ public class Rainha extends Peca{
 
                 // diagonal
                 if(Math.abs(destino.getX() - posicaoAtual.getX()) == Math.abs(destino.getX() - posicaoAtual.getX())) {
-                    if(casaValida(destino, tabuleiro) && pecaNaFrenteDiagonal(destino, tabuleiro) == false) {
+                    if(casaValida(destino, tabuleiro) && caminhoLivreDiagonal(destino, tabuleiro)) {
                         return true;
                     }
                 }
