@@ -49,7 +49,6 @@ public class Jogo {
             char caractere = linhaFem.charAt(j);
             if(Character.isDigit(caractere)){
                 for(int k=0;k<Character.getNumericValue(caractere);k++){
-                    //tabuleiro[linhaTab][colunaTab+k].setSimbolo('-');
                     Path origemNull = Paths.get("src/main/resources/aplicacao/pngPecas/null.png");
                     Path destinoNull = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab+k] + ".png");
                     Files.copy(origemNull, destinoNull, StandardCopyOption.REPLACE_EXISTING);

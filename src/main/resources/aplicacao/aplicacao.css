@@ -5,6 +5,9 @@
 .darkButtons{
     -fx-background-color: #b4cfb4;
 }
+/*TODO: diminuir repeticao de codigo aqui,
+   por exempo: criar uma matriz de strings com
+   os ids dos botoes e fazer um for para adicionar o background-image*/
 
 #A1{
     -fx-background-image: url(pngTabuleiro/A1.png);
