@@ -7,8 +7,11 @@ import aplicacao.pecas.*;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import static java.nio.file.Files.readAllLines;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Jogo {
     //Problema problema;
@@ -29,13 +32,13 @@ public class Jogo {
 
         // Lê posição inicial do tabuleiro no formato FEN.
         // 5r1k/5q1p/1p6/1P1P4/P1R1P1P1/4Q3/6K1/8
-        String linhaUnica = readAllLines(problemaTeste1).getFirst();
-
+        List<String> linhas = readAllLines(problemaTeste1);
+        String linhaFem = linhas.getFirst();
         int linhaTab = 0;
         int colunaTab = 0;
 
-        for(int j=0;j<linhaUnica.length();j++){
-            char caractere = linhaUnica.charAt(j);
+        for(int j=0;j<linhaFem.length();j++){
+            char caractere = linhaFem.charAt(j);
             if(Character.isDigit(caractere)){
                 colunaTab += Character.getNumericValue(caractere);
             }
@@ -65,10 +68,66 @@ public class Jogo {
                 }
             }
         }
+        /*
+        // Lê PGN
 
+        // Cria mapeamento entre letra representativa da coluna com número da coluna.
+        Map<Character, Integer> letterToPos = new HashMap<>();
+        letterToPos.put('a', 0);
+        letterToPos.put('b', 1);
+        letterToPos.put('c', 2);
+        letterToPos.put('d', 3);
+        letterToPos.put('e', 4);
+        letterToPos.put('f', 5);
+        letterToPos.put('g', 6);
+        letterToPos.put('h', 7);
+
+        // Lê arquivo.
+        String linhaPGN = linhas.get(1);
+        List<Jogada> jogadas = new ArrayList<>();
+
+        boolean cor = false; // Temporário.
+        Pos posDest = new Pos(0, 0);
+        Peca pecaJogada = new Peca(false, 'K', new Pos(0, 0));
+        boolean movComputador = false;
+
+        for(int j=1;j<linhaPGN.length();j++) {
+            boolean nextToPos = false;
+            char caractere = linhaPGN.charAt(j);
+            if(caractere == '.'){
+                nextToPos = true;
+                j++; // Pula espaço.
+            } else if (caractere == ' ') {
+                nextToPos = false;
+            } else if (nextToPos) {
+                switch (caractere) {
+                    case 'K':
+                        pecaJogada = new Rei(cor, new Pos(0, 0), caractere);
+                        break;
+                    case 'R':
+                        pecaJogada = new Torre(cor, new Pos(0, 0), caractere);
+                        break;
+                    case 'N':
+                        pecaJogada = new Cavalo(cor, new Pos(0, 0), caractere);
+                        break;
+                    default:
+                        //Peão
+                }
+
+                // Obtém posição.
+                caractere = linhaPGN.charAt(++j);
+                int posColuna = letterToPos.get(caractere);
+                caractere = linhaPGN.charAt(++j);
+                int posLinha = Character.getNumericValue(caractere);
+
+                pecaJogada.setPosicao(new Pos(posLinha, posColuna));
+            }
+        }
+
+        jogadas.add(new Jogada(pecaJogada, posDest, movComputador));
 
         // Cria problema
         //this.problema = new Problema(atributos);
-
+        */
     }
 }
