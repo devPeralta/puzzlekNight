@@ -59,6 +59,7 @@ public class Jogo {
             }
             else{
                 boolean cor = Character.isLowerCase(caractere);
+                caractere = Character.toLowerCase(caractere);
                 switch(caractere){
                     case 'k':
                         tabuleiro[linhaTab][colunaTab] =
