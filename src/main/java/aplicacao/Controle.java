@@ -7,11 +7,16 @@ import javafx.scene.control.Label;
 public class Controle {
     @FXML
     private Label welcomeText;
+    private Jogo jogo;
 
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+
+    //public Controle(Jogo jogo){
+        //this.jogo = jogo;
+    //}
 
     public void A1(ActionEvent e){
         System.out.print("A1");

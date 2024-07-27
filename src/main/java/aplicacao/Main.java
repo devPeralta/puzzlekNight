@@ -1,11 +1,12 @@
 package aplicacao;
 
+import aplicacao.pecas.Peca;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import java.nio.file.*;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -21,24 +22,22 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        Path diretorioProblemas = Paths.get("src/main/java/problemas");
-        Path problemaTeste1 = Paths.get("src/main/java/problemas/m23194.txt");
-        //System.out.println(diretorioProblemas.toAbsolutePath());
-        //System.out.println(problemaTeste1.toAbsolutePath());
+        Jogo jogo1 = new Jogo();
+        //Controle controle = new Controle(jogo1);
+        jogo1.carregaNovoProblema();
+        Peca[][] tabuleiro = jogo1.tabuleiro;
 
-        List<String> linhas = Files.readAllLines(problemaTeste1);
+
         for(int i=0;i<8;i++){
-            String linha = linhas.get(i);
             for(int j=0;j<8;j++){
-                char caractere = linha.charAt(j);
-                switch(caractere){
-                    case 'X':
-                        break;
-                    case 'K': System.out.println("rei");
-                        break;
-                    default: System.out.println("outro");
+                if(tabuleiro[i][j] != null){
+                    System.out.print(tabuleiro[i][j].getSimbolo());
+                }
+                else{
+                    System.out.print(" x ");
                 }
             }
+            System.out.println();
         }
 
         launch();
