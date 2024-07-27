@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 public class Jogo {
     //Problema problema;
-    Peca[][] tabuleiro = new Peca[8][8];
+    private Peca[][] tabuleiro = new Peca[8][8];
     private final String[][] coordenadas = {
             {"A8", "B8", "C8", "D8", "E8", "F8", "G8", "H8"},
             {"A7", "B7", "C7", "D7", "E7", "F7", "G7", "H7"},
@@ -38,7 +38,7 @@ public class Jogo {
         // TODO:Cria valor randômico para selecionar problema.
 
         // Lê problema.
-        Path problemaTeste1 = Paths.get("src/main/java/problemas/m23194.txt");
+        Path problemaTeste1 = Paths.get("src/main/java/problemas/m1.txt");
 
         List<String> linhas = readAllLines(problemaTeste1);
         String linhaFem = linhas.getFirst();
@@ -64,7 +64,7 @@ public class Jogo {
                         tabuleiro[linhaTab][colunaTab] =
                                 new Rei(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
-                        Path origemRei = Paths.get("src/main/resources/aplicacao/pngPecas/rei" + ((cor) ? "Branco":"Preto") + ".png");
+                        Path origemRei = Paths.get("src/main/resources/aplicacao/pngPecas/rei" + ((cor) ? "Preto":"Branco") + ".png");
                         Path destinoRei = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
                         Files.copy(origemRei, destinoRei, StandardCopyOption.REPLACE_EXISTING);
                         break;
@@ -80,7 +80,7 @@ public class Jogo {
                         tabuleiro[linhaTab][colunaTab] =
                                 new Cavalo(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
-                        Path origemCavalo = Paths.get("src/main/resources/aplicacao/pngPecas/cavalo" + ((cor) ? "Branco":"Preto") + ".png");
+                        Path origemCavalo = Paths.get("src/main/resources/aplicacao/pngPecas/cavalo" + ((cor) ? "Preto":"Branco") + ".png");
                         Path destinoCavalo = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
                         Files.copy(origemCavalo, destinoCavalo, StandardCopyOption.REPLACE_EXISTING);
                         break;
@@ -88,7 +88,7 @@ public class Jogo {
                         tabuleiro[linhaTab][colunaTab] =
                                 new Bispo(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
-                        Path origemBispo = Paths.get("src/main/resources/aplicacao/pngPecas/bispo" + ((cor) ? "Branco":"Preto") + ".png");
+                        Path origemBispo = Paths.get("src/main/resources/aplicacao/pngPecas/bispo" + ((cor) ? "Preto":"Branco") + ".png");
                         Path destinoBispo = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
                         Files.copy(origemBispo, destinoBispo, StandardCopyOption.REPLACE_EXISTING);
                         break;
@@ -104,7 +104,7 @@ public class Jogo {
                         tabuleiro[linhaTab][colunaTab] =
                                 new Peao(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
-                        Path origemPeao = Paths.get("src/main/resources/aplicacao/pngPecas/peao" + ((cor) ? "Branco":"Preto") + ".png");
+                        Path origemPeao = Paths.get("src/main/resources/aplicacao/pngPecas/peao" + ((cor) ? "Preto":"Branco") + ".png");
                         Path destinoPeao = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
                         Files.copy(origemPeao, destinoPeao, StandardCopyOption.REPLACE_EXISTING);
                         break;
@@ -188,5 +188,13 @@ public class Jogo {
                 file.delete();
             }
         }
+    }
+
+    public void setTabuleiro(Peca[][] tabuleiro) {
+        this.tabuleiro = tabuleiro;
+    }
+
+    public Peca[][] getTabuleiro() {
+        return tabuleiro;
     }
 }
