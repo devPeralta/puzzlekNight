@@ -48,6 +48,12 @@ public class Jogo {
         for(int j=0;j<linhaFem.length();j++){
             char caractere = linhaFem.charAt(j);
             if(Character.isDigit(caractere)){
+                for(int k=0;k<Character.getNumericValue(caractere);k++){
+                    //tabuleiro[linhaTab][colunaTab+k].setSimbolo('-');
+                    Path origemNull = Paths.get("src/main/resources/aplicacao/pngPecas/null.png");
+                    Path destinoNull = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab+k] + ".png");
+                    Files.copy(origemNull, destinoNull, StandardCopyOption.REPLACE_EXISTING);
+                }
                 colunaTab += Character.getNumericValue(caractere);
             }
             else{
@@ -95,8 +101,6 @@ public class Jogo {
                         Path destinoRainha = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
                         Files.copy(origemRainha, destinoRainha, StandardCopyOption.REPLACE_EXISTING);
                         break;
-
-                    /*// TODO: implementar classe peao na pasta pecas
                     case 'p':
                         tabuleiro[linhaTab][colunaTab] =
                                 new Peao(cor, new Pos(linhaTab, colunaTab), caractere);
@@ -105,7 +109,6 @@ public class Jogo {
                         Path destinoPeao = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
                         Files.copy(origemPeao, destinoPeao, StandardCopyOption.REPLACE_EXISTING);
                         break;
-                     */
                     case '/':
                         linhaTab++;
                         colunaTab = 0;
