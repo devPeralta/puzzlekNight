@@ -120,4 +120,60 @@ public class Peca {
 
         return false;
     }
+
+    public boolean pecaNaFrenteDiagonal(Pos destino) {
+
+        if (destino.getX() < posicao.getX()) {
+            // cima e esquerda
+            for (int c = posicao.getY() - 1; c > destino.getY(); c--) {
+                int dif = Math.abs(c - posicao.getY());
+                for (int i = 0; i < DIMENSAO; i++) {
+                    for (int j = 0; j < DIMENSAO; i++) {
+                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() - dif) {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            // cima e direita
+            for (int c = posicao.getY() + 1; c < destino.getY(); c++) {
+                int dif = Math.abs(c - posicao.getY());
+                for (int i = 0; i < DIMENSAO; i++) {
+                    for (int j = 0; j < DIMENSAO; i++) {
+                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() - dif) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (destino.getX() > posicao.getX()) {
+            // baixo e esquerda
+            for (int c = posicao.getY() - 1; c > destino.getY(); c--) {
+                int dif = Math.abs(c - posicao.getY());
+                for (int i = 0; i < DIMENSAO; i++) {
+                    for (int j = 0; j < DIMENSAO; i++) {
+                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() + dif) {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            // baixo e direita
+            for (int c = posicao.getY() + 1; c < destino.getY(); c++) {
+                int dif = Math.abs(c - posicao.getY());
+                for (int i = 0; i < DIMENSAO; i++) {
+                    for (int j = 0; j < DIMENSAO; i++) {
+                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() + dif) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
