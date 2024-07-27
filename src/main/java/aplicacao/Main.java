@@ -38,7 +38,7 @@ public class Main extends Application {
                     System.out.print(" " + tabuleiro[i][j].getSimbolo() + " ");
                 }
                 else{
-                    System.out.print(" x ");
+                    System.out.print(" - ");
                 }
             }
             System.out.println();
