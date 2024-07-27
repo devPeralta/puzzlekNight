@@ -35,18 +35,11 @@ public class Jogo {
     }
 
     public void carregaNovoProblema() throws IOException {
-
-        //Peca[][] tabuleiro = new Peca[8][8];
-
-        // Cria valor randômico para selecionar problema.
+        // TODO:Cria valor randômico para selecionar problema.
 
         // Lê problema.
-        Path diretorioProblemas = Paths.get("src/main/java/problemas");
         Path problemaTeste1 = Paths.get("src/main/java/problemas/m23194.txt");
 
-
-        // Lê posição inicial do tabuleiro no formato FEN.
-        // 5r1k/5q1p/1p6/1P1P4/P1R1P1P1/4Q3/6K1/8
         List<String> linhas = readAllLines(problemaTeste1);
         String linhaFem = linhas.getFirst();
         int linhaTab = 0;
@@ -61,6 +54,7 @@ public class Jogo {
                 boolean cor = Character.isLowerCase(caractere);
                 caractere = Character.toLowerCase(caractere);
                 switch(caractere){
+                    //TODO: se possivel, tentar descobrir uma forma de diminuir essa repeticao de codigo
                     case 'k':
                         tabuleiro[linhaTab][colunaTab] =
                                 new Rei(cor, new Pos(linhaTab, colunaTab), caractere);
@@ -85,6 +79,33 @@ public class Jogo {
                         Path destinoCavalo = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
                         Files.copy(origemCavalo, destinoCavalo, StandardCopyOption.REPLACE_EXISTING);
                         break;
+                    case 'b':
+                        tabuleiro[linhaTab][colunaTab] =
+                                new Bispo(cor, new Pos(linhaTab, colunaTab), caractere);
+                        colunaTab++;
+                        Path origemBispo = Paths.get("src/main/resources/aplicacao/pngPecas/bispo" + ((cor) ? "Branco":"Preto") + ".png");
+                        Path destinoBispo = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
+                        Files.copy(origemBispo, destinoBispo, StandardCopyOption.REPLACE_EXISTING);
+                        break;
+                    case 'q':
+                        tabuleiro[linhaTab][colunaTab] =
+                                new Rainha(cor, new Pos(linhaTab, colunaTab), caractere);
+                        colunaTab++;
+                        Path origemRainha = Paths.get("src/main/resources/aplicacao/pngPecas/rainha" + ((cor) ? "Branca":"Preta") + ".png");
+                        Path destinoRainha = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
+                        Files.copy(origemRainha, destinoRainha, StandardCopyOption.REPLACE_EXISTING);
+                        break;
+
+                    /*// TODO: implementar classe peao na pasta pecas
+                    case 'p':
+                        tabuleiro[linhaTab][colunaTab] =
+                                new Peao(cor, new Pos(linhaTab, colunaTab), caractere);
+                        colunaTab++;
+                        Path origemPeao = Paths.get("src/main/resources/aplicacao/pngPecas/peao" + ((cor) ? "Branco":"Preto") + ".png");
+                        Path destinoPeao = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
+                        Files.copy(origemPeao, destinoPeao, StandardCopyOption.REPLACE_EXISTING);
+                        break;
+                     */
                     case '/':
                         linhaTab++;
                         colunaTab = 0;
