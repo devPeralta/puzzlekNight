@@ -7,12 +7,13 @@ public class Torre extends Peca{
     }
 
     @Override
-    public boolean testaMovimento (Pos posicaoAtual, Pos destino) {
+    public boolean testaMovimento (Pos posicaoAtual, Pos destino, Peca[][] tabuleiro) {
         // pode se mover para qualquer lugar desde que coluna ou linha seja a mesma, de que os dois nao sejam igual(mesma casa)
         if (estaNosLimites(destino)) {
             if(!(destino.getX() == posicaoAtual.getX() && destino.getY() == posicaoAtual.getY())) {
                 if (destino.getX() == posicaoAtual.getX() || destino.getY() == posicaoAtual.getY()) {
-                    if(casaValida(destino) && pecaNaFrenteLinhaReta(destino) == false) {
+                    if(casaValida(destino, tabuleiro) && pecaNaFrenteLinhaReta(destino, tabuleiro) == false) {
+                        System.out.println("casaValida" + casaValida(destino, tabuleiro));
                         return true;
                     }
                 }
@@ -21,3 +22,4 @@ public class Torre extends Peca{
         return false;
     }
 }
+

@@ -7,11 +7,11 @@ public class Rei extends Peca{
     }
 
     @Override
-    public boolean testaMovimento (Pos posicaoAtual, Pos destino) {
+    public boolean testaMovimento (Pos posicaoAtual, Pos destino, Peca[][] tabuleiro) {
         if(estaNosLimites(destino)) {
             if(Math.abs(destino.getX() - posicaoAtual.getX()) + Math.abs(destino.getX() - posicaoAtual.getX()) == 1 ||      // em linha reta
                     Math.abs(destino.getX() - posicaoAtual.getX()) * Math.abs(destino.getX() - posicaoAtual.getX()) == 1) { // diagonal
-                if(casaValida(destino)){
+                if(casaValida(destino, tabuleiro)){
                     return true;
                 }
             }

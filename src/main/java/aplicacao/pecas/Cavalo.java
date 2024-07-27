@@ -7,11 +7,11 @@ public class Cavalo extends Peca{
     }
 
     @Override
-    public boolean testaMovimento (Pos posicaoAtual, Pos destino) {
+    public boolean testaMovimento (Pos posicaoAtual, Pos destino, Peca[][] tabuleiro) {
         if(estaNosLimites(destino)) {
             // para o movimento valido, os resultado vao ser 2:1 ou 1:2
             if(Math.abs(destino.getX() - posicaoAtual.getX()) * Math.abs(destino.getX() - posicaoAtual.getX()) == 2) {
-                if(casaValida(destino)) {
+                if(casaValida(destino, tabuleiro)) {
                     return true;
                 }
             }
