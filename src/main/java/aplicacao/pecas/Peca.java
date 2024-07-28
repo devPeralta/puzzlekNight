@@ -135,62 +135,6 @@ public class Peca {
         return false;
     }
 
-    public boolean pecaNaFrenteDiagonal(Pos destino, Peca[][] tabuleiro) {
-
-        if (destino.getX() < posicao.getX()) {
-            // cima e esquerda
-            for (int c = posicao.getY() - 1; c > destino.getY(); c--) {
-                int dif = Math.abs(c - posicao.getY());
-                for (int i = 0; i < DIMENSAO; i++) {
-                    for (int j = 0; j < DIMENSAO; j++) {
-                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() - dif) {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            // cima e direita
-            for (int c = posicao.getY() + 1; c < destino.getY(); c++) {
-                int dif = Math.abs(c - posicao.getY());
-                for (int i = 0; i < DIMENSAO; i++) {
-                    for (int j = 0; j < DIMENSAO; j++) {
-                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() - dif) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (destino.getX() > posicao.getX()) {
-            // baixo e esquerda
-            for (int c = posicao.getY() - 1; c > destino.getY(); c--) {
-                int dif = Math.abs(c - posicao.getY());
-                for (int i = 0; i < DIMENSAO; i++) {
-                    for (int j = 0; j < DIMENSAO; j++) {
-                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() + dif) {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            // baixo e direita
-            for (int c = posicao.getY() + 1; c < destino.getY(); c++) {
-                int dif = Math.abs(c - posicao.getY());
-                for (int i = 0; i < DIMENSAO; i++) {
-                    for (int j = 0; j < DIMENSAO; j++) {
-                        if (tabuleiro[i][j].getPosicao().getY() == c && tabuleiro[i][j].getPosicao().getX() == posicao.getX() + dif) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     boolean caminhoLivreDiagonal(Pos destino, Peca[][] tabuleiro) {
         int dx = Math.abs(destino.getX() - posicao.getX());
         int dy = Math.abs(destino.getY() - posicao.getY());
