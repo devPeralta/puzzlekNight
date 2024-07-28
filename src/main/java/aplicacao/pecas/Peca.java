@@ -29,6 +29,10 @@ public class Peca {
         this.cor = cor;
     }
 
+    public boolean getCor(){
+        return this.cor;
+    }
+
     public void setSimbolo(char simbolo) {
         this.simbolo = simbolo;
     }

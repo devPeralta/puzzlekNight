@@ -35,7 +35,12 @@ public class Main extends Application {
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
                 if(tabuleiro[i][j] != null){
-                    System.out.print(" " + tabuleiro[i][j].getSimbolo() + " ");
+                    if(tabuleiro[i][j].getCor()) {
+                        System.out.print(" " + Character.toUpperCase(tabuleiro[i][j].getSimbolo()) + " ");
+                    }
+                    else{
+                        System.out.print(" " + tabuleiro[i][j].getSimbolo() + " ");
+                    }
                 }
                 else{
                     System.out.print(" - ");

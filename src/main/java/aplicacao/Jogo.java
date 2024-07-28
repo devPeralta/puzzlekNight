@@ -19,6 +19,7 @@ import java.util.HashMap;
 public class Jogo {
     //Problema problema;
     private Peca[][] tabuleiro = new Peca[8][8];
+    private ArrayList<Jogada> jogadas = new ArrayList<>();
     private final String[][] coordenadas = {
             {"A8", "B8", "C8", "D8", "E8", "F8", "G8", "H8"},
             {"A7", "B7", "C7", "D7", "E7", "F7", "G7", "H7"},
@@ -42,8 +43,11 @@ public class Jogo {
 
         List<String> linhas = readAllLines(problemaTeste1);
         String linhaFem = linhas.getFirst();
+        String linhaProximasJogadas = linhas.get(2);
         int linhaTab = 0;
         int colunaTab = 0;
+
+        leituraJogadasCorretas(linhaProximasJogadas);
 
         for(int j=0;j<linhaFem.length();j++){
             char caractere = linhaFem.charAt(j);
@@ -116,67 +120,6 @@ public class Jogo {
                 }
             }
         }
-        /*
-        // Lê PGN
-
-        // Cria mapeamento entre letra representativa da coluna com número da coluna.
-        Map<Character, Integer> letterToPos = new HashMap<>();
-        letterToPos.put('a', 0);
-        letterToPos.put('b', 1);
-        letterToPos.put('c', 2);
-        letterToPos.put('d', 3);
-        letterToPos.put('e', 4);
-        letterToPos.put('f', 5);
-        letterToPos.put('g', 6);
-        letterToPos.put('h', 7);
-
-        // Lê arquivo.
-        String linhaPGN = linhas.get(1);
-        List<Jogada> jogadas = new ArrayList<>();
-
-        boolean cor = false; // Temporário.
-        Pos posDest = new Pos(0, 0);
-        Peca pecaJogada = new Peca(false, 'K', new Pos(0, 0));
-        boolean movComputador = false;
-
-        for(int j=1;j<linhaPGN.length();j++) {
-            boolean nextToPos = false;
-            char caractere = linhaPGN.charAt(j);
-            if(caractere == '.'){
-                nextToPos = true;
-                j++; // Pula espaço.
-            } else if (caractere == ' ') {
-                nextToPos = false;
-            } else if (nextToPos) {
-                switch (caractere) {
-                    case 'K':
-                        pecaJogada = new Rei(cor, new Pos(0, 0), caractere);
-                        break;
-                    case 'R':
-                        pecaJogada = new Torre(cor, new Pos(0, 0), caractere);
-                        break;
-                    case 'N':
-                        pecaJogada = new Cavalo(cor, new Pos(0, 0), caractere);
-                        break;
-                    default:
-                        //Peão
-                }
-
-                // Obtém posição.
-                caractere = linhaPGN.charAt(++j);
-                int posColuna = letterToPos.get(caractere);
-                caractere = linhaPGN.charAt(++j);
-                int posLinha = Character.getNumericValue(caractere);
-
-                pecaJogada.setPosicao(new Pos(posLinha, posColuna));
-            }
-        }
-
-        jogadas.add(new Jogada(pecaJogada, posDest, movComputador));
-
-        // Cria problema
-        //this.problema = new Problema(atributos);
-        */
     }
 
     // limpa o diretorio pngTabuleiro sempre que um novo jogo é iniciado
@@ -187,6 +130,71 @@ public class Jogo {
             if (file.isFile()) {
                 file.delete();
             }
+        }
+    }
+
+    private void leituraJogadasCorretas(String jogadas){
+        String[] jogadasCorretas = jogadas.split(" ");
+        int contMovComputador=0;
+        char peca=' ';
+        boolean captura=false, xeque=false;
+        boolean isPeao=false;
+        for(int i=0;i<jogadasCorretas.length;i++){
+            Pos posDest = new Pos(0,0);
+            String jogada = jogadasCorretas[i];
+            if(!Character.isDigit(jogada.charAt(0))){
+                contMovComputador++;
+                System.out.println(jogada);
+                switch(jogada.charAt(0)){
+                    case 'K':
+                        peca = 'K';
+                        break;
+                    case 'R':
+                        peca = 'R';
+                        break;
+                    case 'N':
+                        peca = 'N';
+                        break;
+                    case 'B':
+                        peca = 'B';
+                        break;
+                    case 'Q':
+                        peca = 'Q';
+                        break;
+                    //default é peão
+                    default:
+                        peca = 'P';
+                        isPeao = true;
+                }
+
+                if(jogada.charAt(0) == 'x' || jogada.charAt(1) == 'x'){
+                    captura = true;
+                }
+                else{
+                    captura=false;
+                }
+
+                if(jogada.charAt(jogada.length()-1) == '+'){
+                    xeque = true;
+                }
+                else{
+                    xeque = false;
+                }
+
+                if(isPeao) {
+                    posDest.setX(jogada.charAt(0));
+                    posDest.setY(jogada.charAt(1));
+                }
+                else{
+                    posDest.setX(jogada.charAt(1));
+                    posDest.setY(jogada.charAt(2));
+                }
+                this.jogadas.add(new Jogada(peca, posDest , contMovComputador % 2 == 0, captura, xeque));
+            }
+        }
+
+        for(Jogada jogada : this.jogadas){
+            System.out.println(jogada);
         }
     }
 
