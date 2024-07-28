@@ -36,7 +36,7 @@ public class Jogo {
         // TODO:Cria valor randômico para selecionar problema.
 
         // Lê problema.
-        Path problemaTeste1 = Paths.get("src/main/java/problemas/m1.txt");
+        Path problemaTeste1 = Paths.get("src/main/java/problemas/m2.txt");
 
         List<String> linhas = readAllLines(problemaTeste1);
         String linhaFem = linhas.getFirst();
@@ -50,6 +50,8 @@ public class Jogo {
             char caractere = linhaFem.charAt(j);
             if(Character.isDigit(caractere)){
                 for(int k=0;k<Character.getNumericValue(caractere);k++){
+                    Jogo.getTabuleiro()[linhaTab][colunaTab+k] =
+                            new PecaNula(true,'.',new Pos(linhaTab,colunaTab+k));
                     Path origemNull = Paths.get("src/main/resources/aplicacao/pngPecas/null.png");
                     Path destinoNull = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab+k] + ".png");
                     Files.copy(origemNull, destinoNull, StandardCopyOption.REPLACE_EXISTING);
@@ -126,6 +128,14 @@ public class Jogo {
         for (File file : files) {
             if (file.isFile()) {
                 file.delete();
+            }
+        }
+    }
+
+    public static void matrizTabuleiroClear(){
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                Jogo.tabuleiro[i][j] = null;
             }
         }
     }
@@ -215,11 +225,13 @@ public class Jogo {
         Jogo.cliqueOrigemDestino = cliqueOrigemDestino;
     }
 
-    public static void insereTabuleiro(Peca peca, Pos posicao){
-        Jogo.tabuleiro[posicao.getX()][posicao.getY()] = peca;
+    public static void insereTabuleiro(Peca peca){
+        Jogo.tabuleiro[peca.getPosicao().getX()][peca.getPosicao().getY()] = peca;
     }
 
     public static Peca[][] getTabuleiro() {
         return tabuleiro;
     }
+
+
 }

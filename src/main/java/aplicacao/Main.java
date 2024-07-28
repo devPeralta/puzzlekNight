@@ -29,12 +29,12 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
         Jogo.pngTabuleiroClear();
+        Jogo.matrizTabuleiroClear();
         Jogo.carregaNovoProblema();
-        //Jogo.getTabuleiro();
 
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
-                if(Jogo.getTabuleiro()[i][j] != null){
+                if(Jogo.getTabuleiro()[i][j].getSimbolo() != '.'){
                     if(Jogo.getTabuleiro()[i][j].getCor()) {
                         System.out.print(" " + Character.toUpperCase(Jogo.getTabuleiro()[i][j].getSimbolo()) + " ");
                     }
@@ -49,7 +49,7 @@ public class Main extends Application {
             System.out.println();
         }
 
-
         launch();
+
     }
 }
