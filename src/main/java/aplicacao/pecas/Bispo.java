@@ -20,5 +20,4 @@ public class Bispo extends Peca{
         }
         return false;
     }
-
 }

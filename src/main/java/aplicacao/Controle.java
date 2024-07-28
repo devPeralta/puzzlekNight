@@ -1,25 +1,46 @@
 package aplicacao;
 
+import aplicacao.pecas.Peca;
+import aplicacao.pecas.Pos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
 public class Controle {
     @FXML
-    private Label welcomeText;
+    private GridPane gridpane; // corresponde ao fx:id no FXML
+
 
     @FXML
     private void handleButtonClick(ActionEvent e) {
         Jogo.setCliqueOrigemDestino(!Jogo.getCliqueOrigemDestino());
         Button button = (Button) e.getSource();
-        if(Jogo.getCliqueOrigemDestino()){
-            if(button.getStyleClass().contains("darkButtons")){
+        if(Jogo.getCliqueOrigemDestino()) { // clique origem
+            if (button.getStyleClass().contains("darkButtons")) {
                 button.setStyle("-fx-background-color: rgba(167,103,103,0.75);"); // Altera a cor de fundo para vermelho
-            }
-            else{
+            } else {
                 button.setStyle("-fx-background-color: rgba(110,56,56,0.75);"); // Altera a cor de fundo para vermelho
             }
+
+            int linhaClique = 8 - Character.getNumericValue(button.getId().charAt(1));
+            int colunaClique = (Character.getNumericValue(button.getId().charAt(0))) - 10;
+
+            if(Jogo.getTabuleiro()[linhaClique][colunaClique] != null) {
+                String cor = Jogo.getTabuleiro()[linhaClique][colunaClique].getCor() ? "preto" : "branco";
+                char pecaClique = Jogo.getTabuleiro()[linhaClique][colunaClique].getSimbolo();
+                System.out.println("Clique: " + pecaClique + " " + cor);
+            }
+
+            Button botaoA8 = (Button) gridpane.lookup("#A8");
+            if (botaoA8 != null) {
+                // Altere o plano de fundo do botão A8
+                botaoA8.setStyle("-fx-background-color: yellow;"); // Altere a cor conforme necessário
+            }
+        }
+        else{// clique destino
+
         }
        System.out.print(button.getId());
 
@@ -37,5 +58,10 @@ public class Controle {
         }
     }
 
+    //TODO: nao testado
+    private void movePeca(Peca peca, Pos posicaoOrigem, Pos posicaoDestino){
+        Jogo.insereTabuleiro(null, posicaoOrigem);
+        Jogo.insereTabuleiro(peca, posicaoDestino);
+    }
 
 }

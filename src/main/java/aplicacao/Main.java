@@ -4,6 +4,7 @@ import aplicacao.pecas.Peca;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.nio.file.Files;
@@ -29,16 +30,16 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
         Jogo.pngTabuleiroClear();
         Jogo.carregaNovoProblema();
-        Peca[][] tabuleiro = Jogo.getTabuleiro();
+        //Jogo.getTabuleiro();
 
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
-                if(tabuleiro[i][j] != null){
-                    if(tabuleiro[i][j].getCor()) {
-                        System.out.print(" " + Character.toUpperCase(tabuleiro[i][j].getSimbolo()) + " ");
+                if(Jogo.getTabuleiro()[i][j] != null){
+                    if(Jogo.getTabuleiro()[i][j].getCor()) {
+                        System.out.print(" " + Character.toUpperCase(Jogo.getTabuleiro()[i][j].getSimbolo()) + " ");
                     }
                     else{
-                        System.out.print(" " + tabuleiro[i][j].getSimbolo() + " ");
+                        System.out.print(" " + Jogo.getTabuleiro()[i][j].getSimbolo() + " ");
                     }
                 }
                 else{

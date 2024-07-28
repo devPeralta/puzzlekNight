@@ -215,8 +215,8 @@ public class Jogo {
         Jogo.cliqueOrigemDestino = cliqueOrigemDestino;
     }
 
-    public static void setTabuleiro(Peca[][] tabuleiro) {
-        Jogo.tabuleiro = tabuleiro;
+    public static void insereTabuleiro(Peca peca, Pos posicao){
+        Jogo.tabuleiro[posicao.getX()][posicao.getY()] = peca;
     }
 
     public static Peca[][] getTabuleiro() {
