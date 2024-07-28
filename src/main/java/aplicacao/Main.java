@@ -28,9 +28,8 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
         Jogo.pngTabuleiroClear();
-        Jogo jogo1 = new Jogo();
-        jogo1.carregaNovoProblema();
-        Peca[][] tabuleiro = jogo1.getTabuleiro();
+        Jogo.carregaNovoProblema();
+        Peca[][] tabuleiro = Jogo.getTabuleiro();
 
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){

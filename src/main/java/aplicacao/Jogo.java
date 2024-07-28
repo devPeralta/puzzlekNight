@@ -18,9 +18,9 @@ import java.util.HashMap;
 
 public class Jogo {
     //Problema problema;
-    private Peca[][] tabuleiro = new Peca[8][8];
-    private ArrayList<Jogada> jogadas = new ArrayList<>();
-    private final String[][] coordenadas = {
+    private static Peca[][] tabuleiro = new Peca[8][8];
+    private static ArrayList<Jogada> jogadas = new ArrayList<>();
+    private static final String[][] coordenadas = {
             {"A8", "B8", "C8", "D8", "E8", "F8", "G8", "H8"},
             {"A7", "B7", "C7", "D7", "E7", "F7", "G7", "H7"},
             {"A6", "B6", "C6", "D6", "E6", "F6", "G6", "H6"},
@@ -32,7 +32,7 @@ public class Jogo {
     };
     private static boolean cliqueOrigemDestino = false;  // false = proximo clique é origem, true = proximo clique é destino
 
-    public void carregaNovoProblema() throws IOException {
+    public static void carregaNovoProblema() throws IOException {
         // TODO:Cria valor randômico para selecionar problema.
 
         // Lê problema.
@@ -62,7 +62,7 @@ public class Jogo {
                 switch(caractere){
                     //TODO: se possivel, tentar descobrir uma forma de diminuir essa repeticao de codigo
                     case 'k':
-                        tabuleiro[linhaTab][colunaTab] =
+                        Jogo.tabuleiro[linhaTab][colunaTab] =
                                 new Rei(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
                         Path origemRei = Paths.get("src/main/resources/aplicacao/pngPecas/rei" + ((cor) ? "Preto":"Branco") + ".png");
@@ -70,7 +70,7 @@ public class Jogo {
                         Files.copy(origemRei, destinoRei, StandardCopyOption.REPLACE_EXISTING);
                         break;
                     case 'r':
-                        tabuleiro[linhaTab][colunaTab] =
+                        Jogo.tabuleiro[linhaTab][colunaTab] =
                                 new Torre(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
                         Path origemTorre = Paths.get("src/main/resources/aplicacao/pngPecas/torre" + ((cor) ? "Branca":"Preta") + ".png");
@@ -78,7 +78,7 @@ public class Jogo {
                         Files.copy(origemTorre, destinoTorre, StandardCopyOption.REPLACE_EXISTING);
                         break;
                     case 'n':
-                        tabuleiro[linhaTab][colunaTab] =
+                        Jogo.tabuleiro[linhaTab][colunaTab] =
                                 new Cavalo(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
                         Path origemCavalo = Paths.get("src/main/resources/aplicacao/pngPecas/cavalo" + ((cor) ? "Preto":"Branco") + ".png");
@@ -86,7 +86,7 @@ public class Jogo {
                         Files.copy(origemCavalo, destinoCavalo, StandardCopyOption.REPLACE_EXISTING);
                         break;
                     case 'b':
-                        tabuleiro[linhaTab][colunaTab] =
+                        Jogo.tabuleiro[linhaTab][colunaTab] =
                                 new Bispo(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
                         Path origemBispo = Paths.get("src/main/resources/aplicacao/pngPecas/bispo" + ((cor) ? "Preto":"Branco") + ".png");
@@ -94,7 +94,7 @@ public class Jogo {
                         Files.copy(origemBispo, destinoBispo, StandardCopyOption.REPLACE_EXISTING);
                         break;
                     case 'q':
-                        tabuleiro[linhaTab][colunaTab] =
+                        Jogo.tabuleiro[linhaTab][colunaTab] =
                                 new Rainha(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
                         Path origemRainha = Paths.get("src/main/resources/aplicacao/pngPecas/rainha" + ((cor) ? "Branca":"Preta") + ".png");
@@ -102,7 +102,7 @@ public class Jogo {
                         Files.copy(origemRainha, destinoRainha, StandardCopyOption.REPLACE_EXISTING);
                         break;
                     case 'p':
-                        tabuleiro[linhaTab][colunaTab] =
+                        Jogo.tabuleiro[linhaTab][colunaTab] =
                                 new Peao(cor, new Pos(linhaTab, colunaTab), caractere);
                         colunaTab++;
                         Path origemPeao = Paths.get("src/main/resources/aplicacao/pngPecas/peao" + ((cor) ? "Preto":"Branco") + ".png");
@@ -130,7 +130,7 @@ public class Jogo {
         }
     }
 
-    private void leituraJogadasCorretas(String jogadas){
+    private static void leituraJogadasCorretas(String jogadas){
         String[] jogadasCorretas = jogadas.split(" ");
         int contMovComputador=0;
         char peca=' ';
@@ -197,29 +197,29 @@ public class Jogo {
                         posDest.setY(7 - (jogada.charAt(2)-49));
                     }
                 }
-                this.jogadas.add(new Jogada(peca, posDest , contMovComputador % 2 == 0, captura, xeque));
+                Jogo.jogadas.add(new Jogada(peca, posDest , contMovComputador % 2 == 0, captura, xeque));
             }
         }
 
-        for(Jogada jogada : this.jogadas){
-            int posicao = this.jogadas.indexOf(jogada) + 1;
+        for(Jogada jogada : Jogo.jogadas){
+            int posicao = Jogo.jogadas.indexOf(jogada) + 1;
             System.out.println(posicao + "º:" + jogada);
         }
     }
 
     public static boolean getCliqueOrigemDestino() {
-        return cliqueOrigemDestino;
+        return Jogo.cliqueOrigemDestino;
     }
 
     public static void setCliqueOrigemDestino(boolean cliqueOrigemDestino) {
         Jogo.cliqueOrigemDestino = cliqueOrigemDestino;
     }
 
-    public void setTabuleiro(Peca[][] tabuleiro) {
-        this.tabuleiro = tabuleiro;
+    public static void setTabuleiro(Peca[][] tabuleiro) {
+        Jogo.tabuleiro = tabuleiro;
     }
 
-    public Peca[][] getTabuleiro() {
+    public static Peca[][] getTabuleiro() {
         return tabuleiro;
     }
 }
