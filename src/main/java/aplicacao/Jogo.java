@@ -13,8 +13,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import static java.nio.file.Files.readAllLines;
-import java.util.Map;
-import java.util.HashMap;
 
 public class Jogo {
     //Problema problema;
@@ -30,7 +28,7 @@ public class Jogo {
             {"A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2"},
             {"A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1"}
     };
-    private static boolean cliqueOrigemDestino = false;  // false = proximo clique é origem, true = proximo clique é destino
+    private static boolean cliqueDestino = false;  // false = clique é origem, true = clique é destino
 
     public static void carregaNovoProblema() throws IOException {
         // TODO:Cria valor randômico para selecionar problema.
@@ -217,12 +215,12 @@ public class Jogo {
         }
     }
 
-    public static boolean getCliqueOrigemDestino() {
-        return Jogo.cliqueOrigemDestino;
+    public static boolean getCliqueDestino() {
+        return cliqueDestino;
     }
 
-    public static void setCliqueOrigemDestino(boolean cliqueOrigemDestino) {
-        Jogo.cliqueOrigemDestino = cliqueOrigemDestino;
+    public static void switchCliqueDestino() {
+        cliqueDestino = !cliqueDestino;
     }
 
     public static void insereTabuleiro(Peca peca){

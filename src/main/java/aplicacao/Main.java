@@ -32,6 +32,13 @@ public class Main extends Application {
         Jogo.matrizTabuleiroClear();
         Jogo.carregaNovoProblema();
 
+        desenhaTabuleiro();
+
+        launch();
+
+    }
+
+    private static void desenhaTabuleiro(){
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
                 if(Jogo.getTabuleiro()[i][j].getSimbolo() != '.'){
@@ -48,8 +55,5 @@ public class Main extends Application {
             }
             System.out.println();
         }
-
-        launch();
-
     }
 }

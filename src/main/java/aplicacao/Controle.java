@@ -5,11 +5,8 @@ import aplicacao.pecas.PecaNula;
 import aplicacao.pecas.Pos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class Controle {
     @FXML
@@ -18,9 +15,8 @@ public class Controle {
     @FXML
     private void handleButtonClick(ActionEvent e) {
 
-        Jogo.setCliqueOrigemDestino(!Jogo.getCliqueOrigemDestino());
         Button button = (Button) e.getSource();
-        if(Jogo.getCliqueOrigemDestino()) { // clique origem
+        if(Jogo.getCliqueDestino()) { // clique origem
             if (button.getStyleClass().contains("darkButtons")) {
                 button.setStyle("-fx-background-color: rgba(167,103,103,0.75);"); // Altera a cor de fundo para vermelho
             } else {
@@ -33,7 +29,7 @@ public class Controle {
 
 
             if(Jogo.getTabuleiro()[linhaClique][colunaClique] != null) {
-                String cor = Jogo.getTabuleiro()[linhaClique][colunaClique].getCor() ? "preto" : "branco";
+                String cor = Jogo.getTabuleiro()[linhaClique][colunaClique].getCor() ? "branco":"preto";
                 char pecaClique = Jogo.getTabuleiro()[linhaClique][colunaClique].getSimbolo();
                 System.out.println("Clique: " + pecaClique + " " + cor);
             }
@@ -48,7 +44,9 @@ public class Controle {
         else{// clique destino
 
         }
-       System.out.print(button.getId());
+        // Alterna entre clique de origem e destino.
+        Jogo.switchCliqueDestino();
+        System.out.print(button.getId());
 
         switch(button.getId()){
             //TODO: implementar metodos de retorno para cada botao quando existirem
