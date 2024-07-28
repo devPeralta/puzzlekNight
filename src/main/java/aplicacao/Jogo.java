@@ -30,10 +30,7 @@ public class Jogo {
             {"A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2"},
             {"A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1"}
     };
-
-    public Jogo() {
-
-    }
+    private static boolean cliqueOrigemDestino = false;  // false = proximo clique é origem, true = proximo clique é destino
 
     public void carregaNovoProblema() throws IOException {
         // TODO:Cria valor randômico para selecionar problema.
@@ -208,6 +205,14 @@ public class Jogo {
             int posicao = this.jogadas.indexOf(jogada) + 1;
             System.out.println(posicao + "º:" + jogada);
         }
+    }
+
+    public static boolean getCliqueOrigemDestino() {
+        return cliqueOrigemDestino;
+    }
+
+    public static void setCliqueOrigemDestino(boolean cliqueOrigemDestino) {
+        Jogo.cliqueOrigemDestino = cliqueOrigemDestino;
     }
 
     public void setTabuleiro(Peca[][] tabuleiro) {

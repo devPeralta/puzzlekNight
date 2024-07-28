@@ -11,9 +11,17 @@ public class Controle {
 
     @FXML
     private void handleButtonClick(ActionEvent e) {
+        Jogo.setCliqueOrigemDestino(!Jogo.getCliqueOrigemDestino());
         Button button = (Button) e.getSource();
-        button.setStyle("-fx-background-color: rgb(154,69,69);"); // Altera a cor de fundo para vermelho
-        System.out.print(button.getId());
+        if(Jogo.getCliqueOrigemDestino()){
+            if(button.getStyleClass().contains("darkButtons")){
+                button.setStyle("-fx-background-color: rgba(167,103,103,0.75);"); // Altera a cor de fundo para vermelho
+            }
+            else{
+                button.setStyle("-fx-background-color: rgba(110,56,56,0.75);"); // Altera a cor de fundo para vermelho
+            }
+        }
+       System.out.print(button.getId());
 
         switch(button.getId()){
             //TODO: implementar metodos de retorno para cada botao quando existirem
