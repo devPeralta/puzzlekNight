@@ -28,7 +28,6 @@ public class Jogada {
                 ", posDest=(" + this.posDest.getX() + "," + this.posDest.getY() + ")" +
                 ", movComputador=" + this.movComputador +
                 ", captura=" + this.captura +
-                ", xeque=" + this.xeque +
-                '}';
+                ", xeque=" + this.xeque;
     }
 }

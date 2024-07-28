@@ -144,7 +144,7 @@ public class Jogo {
             String jogada = jogadasCorretas[i];
             if(!Character.isDigit(jogada.charAt(0))){
                 contMovComputador++;
-                System.out.println(jogada);
+                //System.out.println(jogada);
                 switch(jogada.charAt(0)){
                     case 'K':
                         peca = 'K';
@@ -180,21 +180,33 @@ public class Jogo {
                 else{
                     xeque = false;
                 }
-
                 if(isPeao) {
-                    posDest.setX(jogada.charAt(0));
-                    posDest.setY(jogada.charAt(1));
+                    if(captura){
+                        posDest.setX(jogada.charAt(1)-97);
+                        posDest.setY(7 - (jogada.charAt(2)-49));
+                    }
+                    else{
+                        posDest.setX(jogada.charAt(0)-97);
+                        posDest.setY(7 - (jogada.charAt(1)-49));
+                    }
                 }
                 else{
-                    posDest.setX(jogada.charAt(1));
-                    posDest.setY(jogada.charAt(2));
+                    if(captura){
+                        posDest.setX(jogada.charAt(2)-97);
+                        posDest.setY(7 - (jogada.charAt(3)-49));
+                    }
+                    else{
+                        posDest.setX(jogada.charAt(1)-97);
+                        posDest.setY(7 - (jogada.charAt(2)-49));
+                    }
                 }
                 this.jogadas.add(new Jogada(peca, posDest , contMovComputador % 2 == 0, captura, xeque));
             }
         }
 
         for(Jogada jogada : this.jogadas){
-            System.out.println(jogada);
+            int posicao = this.jogadas.indexOf(jogada) + 1;
+            System.out.println(posicao + "º:" + jogada);
         }
     }
 

@@ -16,13 +16,16 @@ public class Controle {
         System.out.print(button.getId());
 
         switch(button.getId()){
+            //TODO: implementar metodos de retorno para cada botao quando existirem
             case "A1":
                 //implementacao clique A1
                 break;
             case "B1":
                 //implementacao clique B1
                 break;
-                //TODO: Implementar para todas as casas do tabuleiro
+
+                // ...
+
         }
     }
 
