@@ -100,7 +100,7 @@ public class Jogo {
     private static void leituraJogadasCorretas(String jogadas){
         String[] jogadasCorretas = jogadas.split(" ");
         int contMovComputador=0;
-        char peca;
+        Peca novaPeca;
         Cor cor = BRANCO;
         boolean captura, xeque;
         boolean isPeao=false;
@@ -111,26 +111,33 @@ public class Jogo {
             if (!Character.isDigit(jogadasCorreta.charAt(0))) {
                 contMovComputador++;
                 //System.out.println(jogada);
-                switch (jogadasCorreta.charAt(0)) {
+                // Obtém caractere e simbolo de peça.
+                char tipoPeca = jogadasCorreta.charAt(0);
+                char simboloPeca = tipoPeca;
+                if(cor == PRETO)
+                    simboloPeca = Character.toLowerCase(tipoPeca);
+
+                switch (tipoPeca) {
                     case 'K':
-                        peca = 'K';
+                        novaPeca = new Rei(cor, new Pos(0, 0), simboloPeca);
                         break;
                     case 'R':
-                        peca = 'R';
+                        novaPeca = new Torre(cor, new Pos(0, 0), simboloPeca);
                         break;
                     case 'N':
-                        peca = 'N';
+                        novaPeca = new Cavalo(cor, new Pos(0, 0), simboloPeca);
                         break;
                     case 'B':
-                        peca = 'B';
+                        novaPeca = new Bispo(cor, new Pos(0, 0), simboloPeca);
                         break;
                     case 'Q':
-                        peca = 'Q';
+                        novaPeca = new Rainha(cor, new Pos(0, 0), simboloPeca);
                         break;
                     //default é peão
                     default:
-                        peca = 'P';
+                        novaPeca = new Peao(cor, new Pos(0, 0), simboloPeca);
                         isPeao = true;
+                        break;
                 }
 
                 captura = jogadasCorreta.charAt(0) == 'x' || jogadasCorreta.charAt(1) == 'x';
@@ -153,15 +160,16 @@ public class Jogo {
                         posDest.setLinha(7 - (jogadasCorreta.charAt(2) - 49));
                     }
                 }
-                Jogo.jogadas.add(new Jogada(peca, posDest, contMovComputador % 2 == 0, captura, xeque));
-            }
-            /*
-            if(cor == BRANCO)
-                cor = PRETO;
-            else
-                cor = BRANCO;
 
-             */
+                novaPeca.setPosicao(new Pos(posDest.getLinha(), posDest.getColuna()));
+                Jogo.jogadas.add(new Jogada(novaPeca, posDest, contMovComputador % 2 == 0, captura, xeque));
+
+                // Alterna a cor da peça conforme lê os movimentos.
+                if(cor == BRANCO)
+                    cor = PRETO;
+                else
+                    cor = BRANCO;
+            }
         }
 
         for(Jogada jogada : Jogo.jogadas){

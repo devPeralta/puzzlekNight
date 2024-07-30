@@ -5,7 +5,7 @@ import aplicacao.pecas.Pos;
 
 public class Jogada {
     //obs: atributo peça foi mudada para char pois aqui não faz sentido ser do tipo peça
-    private char peca;
+    private Peca peca;
     private Pos posDest;
     private boolean movComputador;
     //atributos novos:
@@ -13,7 +13,7 @@ public class Jogada {
     private boolean xeque;
 
     //
-    public Jogada(char peca, Pos posDest, boolean movComputador, boolean captura, boolean xeque) {
+    public Jogada(Peca peca, Pos posDest, boolean movComputador, boolean captura, boolean xeque) {
         this.peca = peca;
         this.posDest = posDest;
         this.movComputador = movComputador;

@@ -151,4 +151,13 @@ public class Peca {
         return true; // Caminho está livre
     }
 
+    @Override
+    public String toString() {
+        return "Peca{" +
+                "cor=" + cor +
+                ", simbolo=" + simbolo +
+                ", posicao=" + posicao +
+                '}';
+    }
+
 }
