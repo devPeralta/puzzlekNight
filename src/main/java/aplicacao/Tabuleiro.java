@@ -34,7 +34,7 @@ public class Tabuleiro extends GridPane {
                 stackPane.setOnMouseClicked(event -> {
                     int linhaClicada = Integer.parseInt(stackPane.getId().split("_")[1]);
                     int colunaClicada = Integer.parseInt(stackPane.getId().split("_")[2]);
-                    System.out.println("Casa Clicado: " + linhaClicada + ", " + colunaClicada);
+                    //System.out.println("Casa Clicado: " + linhaClicada + ", " + colunaClicada);
                     Controle.registraClique(new Pos(linhaClicada, colunaClicada));
                 });
 

@@ -197,7 +197,7 @@ public class Jogo {
 
     public static void apagaPosJogo(Pos posicaoDestino) {
         Jogo.tabuleiroJogo[posicaoDestino.getLinha()][posicaoDestino.getColuna()] = null;
-        System.out.println("Apagou, linha: " + posicaoDestino.getLinha() + "coluna: " + posicaoDestino.getColuna());
+        //System.out.println("Apagou, linha: " + posicaoDestino.getLinha() + "coluna: " + posicaoDestino.getColuna());
     }
 
     public static void insereTabuleiroJogo(Peca[][] tabuleiroJogo) {
