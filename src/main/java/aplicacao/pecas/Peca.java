@@ -1,20 +1,17 @@
 package aplicacao.pecas;
 
 public class Peca {
-    private boolean cor; // 0 = branco, 1 = preto
-    private char simbolo; // 'P' ou 'p' = peão 'R' ou 'r' = torre, 'K' ou 'k' = cavalo, 'B' ou 'b' = bispo, 'Q' ou 'q' = rainha, 'K' ou 'k' = rei
+
+    private Cor cor; // 0 = branco, 1 = preto
+    private char simbolo; // 'p' = peão, 'r' = torre, 'k' = cavalo, 'b' = bispo, 'q' = rainha, 'k' = rei
     private Pos posicao;
     private static final int DIMENSAO = 8;
     //private Peca tabuleiro[][];
 
-    public Peca(boolean cor, char simbolo, Pos posicao) {
+    public Peca(Cor cor, char simbolo, Pos posicao) {
         this.cor = cor;
         this.simbolo = simbolo;
         this.posicao = posicao;
-    }
-
-    public boolean isCor() {
-        return cor;
     }
 
     public char getSimbolo() {
@@ -25,11 +22,11 @@ public class Peca {
         return posicao;
     }
 
-    public void setCor(boolean cor) {
+    public void setCor(Cor cor) {
         this.cor = cor;
     }
 
-    public boolean getCor(){
+    public Cor getCor(){
         return this.cor;
     }
 
@@ -45,9 +42,13 @@ public class Peca {
         return false;
     }
 
+    public String getCaminhoImagem(){
+        return "";
+    }
+
     public boolean estaNosLimites(Pos destino) {
-        if (destino.getX() >= 0 && destino.getX() < DIMENSAO) {
-            if (destino.getY() >= 0 && destino.getY() < DIMENSAO) {
+        if (destino.getLinha() >= 0 && destino.getLinha() < DIMENSAO) {
+            if (destino.getColuna() >= 0 && destino.getColuna() < DIMENSAO) {
                 return true;
             }
         }
@@ -58,7 +59,7 @@ public class Peca {
         for(int i=0; i < DIMENSAO; i++) {
             for (int j=0; j < DIMENSAO; j++) {
                 if(tabuleiro[i][j] != null){
-                    if(tabuleiro[i][j].posicao.getX() == destino.getX() && tabuleiro[i][j].posicao.getY() == destino.getY() && tabuleiro[i][j] != this) {
+                    if(tabuleiro[i][j].posicao.getLinha() == destino.getLinha() && tabuleiro[i][j].posicao.getColuna() == destino.getColuna() && tabuleiro[i][j] != this) {
                         return tabuleiro[i][j];
                     }
                 }
@@ -81,11 +82,11 @@ public class Peca {
 
     public boolean pecaNaFrenteLinhaReta(Pos destino, Peca[][] tabuleiro) {
         // movendo p/ esquerda
-        for(int c = posicao.getY()-1; c > destino.getY(); c--){
+        for(int c = posicao.getColuna()-1; c > destino.getColuna(); c--){
             for (int i = 0; i < DIMENSAO; i++) {
                 for (int j = 0; j < DIMENSAO; j++) {
                     if(tabuleiro[i][j] != null) {
-                        if(tabuleiro[i][j].posicao.getY() == c && tabuleiro[i][j].posicao.getX() == destino.getX()) {
+                        if(tabuleiro[i][j].posicao.getColuna() == c && tabuleiro[i][j].posicao.getLinha() == destino.getLinha()) {
                             return true;
                         }
                     }
@@ -94,11 +95,11 @@ public class Peca {
         }
 
         // movendo p/ direita
-        for(int c = posicao.getY() +1; c < destino.getY(); c++){
+        for(int c = posicao.getColuna() +1; c < destino.getColuna(); c++){
             for (int i = 0; i < DIMENSAO; i++) {
                 for (int j = 0; j < DIMENSAO; j++) {
                     if(tabuleiro[i][j] != null) {
-                        if(tabuleiro[i][j].posicao.getY() == c && tabuleiro[i][j].posicao.getX() == destino.getX()) {
+                        if(tabuleiro[i][j].posicao.getColuna() == c && tabuleiro[i][j].posicao.getLinha() == destino.getLinha()) {
                             return true;
                         }
                     }
@@ -107,11 +108,11 @@ public class Peca {
         }
 
         // movendo p/ cima
-        for(int r = posicao.getX()-1; r > destino.getX(); r--){
+        for(int r = posicao.getLinha()-1; r > destino.getLinha(); r--){
             for (int i = 0; i < DIMENSAO; i++) {
                 for (int j = 0; j < DIMENSAO; j++) {
                     if(tabuleiro[i][j] != null) {
-                        if(tabuleiro[i][j].posicao.getY() == destino.getY() && tabuleiro[i][j].posicao.getX() == r) {
+                        if(tabuleiro[i][j].posicao.getColuna() == destino.getColuna() && tabuleiro[i][j].posicao.getLinha() == r) {
                             return true;
                         }
                     }
@@ -120,11 +121,11 @@ public class Peca {
         }
 
         // movendo p/ baixo
-        for(int r = posicao.getX()+1; r < destino.getX(); r++){
+        for(int r = posicao.getLinha()+1; r < destino.getLinha(); r++){
             for (int i = 0; i < DIMENSAO; i++) {
                 for (int j = 0; j < DIMENSAO; j++) {
                     if(tabuleiro[i][j] != null) {
-                        if(tabuleiro[i][j].posicao.getY() == destino.getY() && tabuleiro[i][j].posicao.getX() == r) {
+                        if(tabuleiro[i][j].posicao.getColuna() == destino.getColuna() && tabuleiro[i][j].posicao.getLinha() == r) {
                             return true;
                         }
                     }
@@ -136,13 +137,13 @@ public class Peca {
     }
 
     boolean caminhoLivreDiagonal(Pos destino, Peca[][] tabuleiro) {
-        int dx = Math.abs(destino.getX() - posicao.getX());
-        int dy = Math.abs(destino.getY() - posicao.getY());
+        int dx = Math.abs(destino.getLinha() - posicao.getLinha());
+        int dy = Math.abs(destino.getColuna() - posicao.getColuna());
         if (dx != dy) return false; // Movimento inválido
 
-        int stepX = (destino.getX() > posicao.getX()) ? 1 : -1;
-        int stepY = (destino.getY() > posicao.getY()) ? 1 : -1;
-        for (int x = posicao.getX() + stepX, y = posicao.getY() + stepY; x != destino.getX(); x += stepX, y += stepY) {
+        int stepX = (destino.getLinha() > posicao.getLinha()) ? 1 : -1;
+        int stepY = (destino.getColuna() > posicao.getColuna()) ? 1 : -1;
+        for (int x = posicao.getLinha() + stepX, y = posicao.getColuna() + stepY; x != destino.getLinha(); x += stepX, y += stepY) {
             if (tabuleiro[x][y] != null) {
                 return false; // Há uma peça no caminho
             }

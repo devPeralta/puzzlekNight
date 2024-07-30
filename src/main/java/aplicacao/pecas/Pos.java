@@ -1,27 +1,27 @@
 package aplicacao.pecas;
 
 public class Pos {
-    private int x;
-    private int y;
+    private int linha;
+    private int coluna;
 
-    public Pos(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Pos(int linha, int coluna) {
+        this.linha = linha;
+        this.coluna = coluna;
     }
 
-    public int getX() {
-        return x;
+    public int getLinha() {
+        return linha;
     }
 
-    public int getY() {
-        return y;
+    public int getColuna() {
+        return coluna;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setColuna(int coluna) {
+        this.coluna = coluna;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setLinha(int linha) {
+        this.linha = linha;
     }
 }

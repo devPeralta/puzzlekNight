@@ -4,39 +4,35 @@ import aplicacao.pecas.Peca;
 import aplicacao.pecas.Pos;
 import aplicacao.pecas.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+
+import static aplicacao.pecas.Cor.*;
 import static java.nio.file.Files.readAllLines;
 
 public class Jogo {
     //Problema problema;
-    private static Peca[][] tabuleiro = new Peca[8][8];
+    private static Peca[][] tabuleiroJogo = new Peca[8][8];
     private static ArrayList<Jogada> jogadas = new ArrayList<>();
-    private static final String[][] coordenadas = {
-            {"A8", "B8", "C8", "D8", "E8", "F8", "G8", "H8"},
-            {"A7", "B7", "C7", "D7", "E7", "F7", "G7", "H7"},
-            {"A6", "B6", "C6", "D6", "E6", "F6", "G6", "H6"},
-            {"A5", "B5", "C5", "D5", "E5", "F5", "G5", "H5"},
-            {"A4", "B4", "C4", "D4", "E4", "F4", "G4", "H4"},
-            {"A3", "B3", "C3", "D3", "E3", "F3", "G3", "H3"},
-            {"A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2"},
-            {"A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1"}
-    };
+
     private static boolean cliqueDestino = false;  // false = clique é origem, true = clique é destino
 
-    public static void carregaNovoProblema() throws IOException {
+    public static void carregaNovoProblema(){
         // TODO:Cria valor randômico para selecionar problema.
 
+        clearJogo();
         // Lê problema.
         Path problemaTeste1 = Paths.get("src/main/java/problemas/m2.txt");
 
-        List<String> linhas = readAllLines(problemaTeste1);
+        List<String> linhas;
+        try {
+            linhas = readAllLines(problemaTeste1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         String linhaFem = linhas.getFirst();
         String linhaProximasJogadas = linhas.get(2);
         int linhaTab = 0;
@@ -44,96 +40,59 @@ public class Jogo {
 
         leituraJogadasCorretas(linhaProximasJogadas);
 
-        for(int j=0;j<linhaFem.length();j++){
-            char caractere = linhaFem.charAt(j);
+        for(int posCharLido=0;posCharLido<linhaFem.length();posCharLido++){
+            char caractere = linhaFem.charAt(posCharLido);
+            // Digitos indicam quantia de casas vazias.
             if(Character.isDigit(caractere)){
-                for(int k=0;k<Character.getNumericValue(caractere);k++){
-                    Jogo.getTabuleiro()[linhaTab][colunaTab+k] =
-                            new PecaNula(true,'.',new Pos(linhaTab,colunaTab+k));
-                    Path origemNull = Paths.get("src/main/resources/aplicacao/pngPecas/null.png");
-                    Path destinoNull = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab+k] + ".png");
-                    Files.copy(origemNull, destinoNull, StandardCopyOption.REPLACE_EXISTING);
-                }
-                colunaTab += Character.getNumericValue(caractere);
+                int casasVazias = Character.getNumericValue(caractere);
+                colunaTab += casasVazias;
             }
             else{
-                boolean cor = Character.isUpperCase(caractere);
+                Cor cor;
+                if(Character.isUpperCase(caractere))
+                    cor = BRANCO;
+                else
+                    cor = PRETO;
+
+                boolean fimLinha = false;
+                Peca novaPeca = null;
                 caractere = Character.toLowerCase(caractere);
-                switch(caractere){
+                // Define qual peca esta sendo lida.
+                switch(caractere) {
                     //TODO: se possivel, tentar descobrir uma forma de diminuir essa repeticao de codigo
                     case 'k':
-                        Jogo.tabuleiro[linhaTab][colunaTab] =
-                                new Rei(cor, new Pos(linhaTab, colunaTab), caractere);
-                        colunaTab++;
-                        Path origemRei = Paths.get("src/main/resources/aplicacao/pngPecas/rei" + ((cor) ? "Branco":"Preto") + ".png");
-                        Path destinoRei = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
-                        Files.copy(origemRei, destinoRei, StandardCopyOption.REPLACE_EXISTING);
+                        novaPeca = new Rei(cor, new Pos(linhaTab, colunaTab), caractere);
                         break;
                     case 'r':
-                        Jogo.tabuleiro[linhaTab][colunaTab] =
-                                new Torre(cor, new Pos(linhaTab, colunaTab), caractere);
-                        colunaTab++;
-                        Path origemTorre = Paths.get("src/main/resources/aplicacao/pngPecas/torre" + ((cor) ? "Branca":"Preta") + ".png");
-                        Path destinoTorre = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
-                        Files.copy(origemTorre, destinoTorre, StandardCopyOption.REPLACE_EXISTING);
+                        novaPeca = new Torre(cor, new Pos(linhaTab, colunaTab), caractere);
                         break;
                     case 'n':
-                        Jogo.tabuleiro[linhaTab][colunaTab] =
-                                new Cavalo(cor, new Pos(linhaTab, colunaTab), caractere);
-                        colunaTab++;
-                        Path origemCavalo = Paths.get("src/main/resources/aplicacao/pngPecas/cavalo" + ((cor) ? "Branco":"Preto") + ".png");
-                        Path destinoCavalo = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
-                        Files.copy(origemCavalo, destinoCavalo, StandardCopyOption.REPLACE_EXISTING);
+                        novaPeca = new Cavalo(cor, new Pos(linhaTab, colunaTab), caractere);
                         break;
                     case 'b':
-                        Jogo.tabuleiro[linhaTab][colunaTab] =
-                                new Bispo(cor, new Pos(linhaTab, colunaTab), caractere);
-                        colunaTab++;
-                        Path origemBispo = Paths.get("src/main/resources/aplicacao/pngPecas/bispo" + ((cor) ? "Branco":"Preto") + ".png");
-                        Path destinoBispo = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
-                        Files.copy(origemBispo, destinoBispo, StandardCopyOption.REPLACE_EXISTING);
+                        novaPeca = new Bispo(cor, new Pos(linhaTab, colunaTab), caractere);
                         break;
                     case 'q':
-                        Jogo.tabuleiro[linhaTab][colunaTab] =
-                                new Rainha(cor, new Pos(linhaTab, colunaTab), caractere);
-                        colunaTab++;
-                        Path origemRainha = Paths.get("src/main/resources/aplicacao/pngPecas/rainha" + ((cor) ? "Branca":"Preta") + ".png");
-                        Path destinoRainha = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
-                        Files.copy(origemRainha, destinoRainha, StandardCopyOption.REPLACE_EXISTING);
+                        novaPeca = new Rainha(cor, new Pos(linhaTab, colunaTab), caractere);
                         break;
                     case 'p':
-                        Jogo.tabuleiro[linhaTab][colunaTab] =
-                                new Peao(cor, new Pos(linhaTab, colunaTab), caractere);
-                        colunaTab++;
-                        Path origemPeao = Paths.get("src/main/resources/aplicacao/pngPecas/peao" + ((cor) ? "Branco":"Preto") + ".png");
-                        Path destinoPeao = Paths.get("src/main/resources/aplicacao/pngTabuleiro/" + coordenadas[linhaTab][colunaTab-1] + ".png");
-                        Files.copy(origemPeao, destinoPeao, StandardCopyOption.REPLACE_EXISTING);
+                        novaPeca = new Peao(cor, new Pos(linhaTab, colunaTab), caractere);
                         break;
+                    // Indica que a linha acabou.
                     case '/':
                         linhaTab++;
                         colunaTab = 0;
+                        fimLinha = true;
                         break;
-                    default: System.out.println("Leitura do tabuleiro nao implementada");
+                    default:
+                        System.out.println("Leitura do tabuleiro nao implementada");
+                        break;
                 }
-            }
-        }
-    }
-
-    // limpa o diretorio pngTabuleiro sempre que um novo jogo é iniciado
-    public static void pngTabuleiroClear(){
-        File directory = new File("src/main/resources/aplicacao/pngTabuleiro");
-        File[] files = directory.listFiles();
-        for (File file : files) {
-            if (file.isFile()) {
-                file.delete();
-            }
-        }
-    }
-
-    public static void matrizTabuleiroClear(){
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                Jogo.tabuleiro[i][j] = null;
+                // Insere nova peca no tabuleiro.
+                if(!fimLinha){
+                    tabuleiroJogo[linhaTab][colunaTab] = novaPeca;
+                    colunaTab++;
+                }
             }
         }
     }
@@ -141,16 +100,16 @@ public class Jogo {
     private static void leituraJogadasCorretas(String jogadas){
         String[] jogadasCorretas = jogadas.split(" ");
         int contMovComputador=0;
-        char peca=' ';
-        boolean captura=false, xeque=false;
+        char peca;
+        boolean captura, xeque;
         boolean isPeao=false;
-        for(int i=0;i<jogadasCorretas.length;i++){
-            Pos posDest = new Pos(0,0);
-            String jogada = jogadasCorretas[i];
-            if(!Character.isDigit(jogada.charAt(0))){
+
+        for (String jogadasCorreta : jogadasCorretas) {
+            Pos posDest = new Pos(0, 0);
+            if (!Character.isDigit(jogadasCorreta.charAt(0))) {
                 contMovComputador++;
                 //System.out.println(jogada);
-                switch(jogada.charAt(0)){
+                switch (jogadasCorreta.charAt(0)) {
                     case 'K':
                         peca = 'K';
                         break;
@@ -172,40 +131,27 @@ public class Jogo {
                         isPeao = true;
                 }
 
-                if(jogada.charAt(0) == 'x' || jogada.charAt(1) == 'x'){
-                    captura = true;
-                }
-                else{
-                    captura=false;
-                }
+                captura = jogadasCorreta.charAt(0) == 'x' || jogadasCorreta.charAt(1) == 'x';
+                xeque = jogadasCorreta.charAt(jogadasCorreta.length() - 1) == '+';
 
-                if(jogada.charAt(jogada.length()-1) == '+'){
-                    xeque = true;
-                }
-                else{
-                    xeque = false;
-                }
-                if(isPeao) {
-                    if(captura){
-                        posDest.setX(jogada.charAt(1)-97);
-                        posDest.setY(7 - (jogada.charAt(2)-49));
+                if (isPeao) {
+                    if (captura) {
+                        posDest.setLinha(jogadasCorreta.charAt(1) - 97);
+                        posDest.setColuna(7 - (jogadasCorreta.charAt(2) - 49));
+                    } else {
+                        posDest.setLinha(jogadasCorreta.charAt(0) - 97);
+                        posDest.setColuna(7 - (jogadasCorreta.charAt(1) - 49));
                     }
-                    else{
-                        posDest.setX(jogada.charAt(0)-97);
-                        posDest.setY(7 - (jogada.charAt(1)-49));
-                    }
-                }
-                else{
-                    if(captura){
-                        posDest.setX(jogada.charAt(2)-97);
-                        posDest.setY(7 - (jogada.charAt(3)-49));
-                    }
-                    else{
-                        posDest.setX(jogada.charAt(1)-97);
-                        posDest.setY(7 - (jogada.charAt(2)-49));
+                } else {
+                    if (captura) {
+                        posDest.setLinha(jogadasCorreta.charAt(2) - 97);
+                        posDest.setColuna(7 - (jogadasCorreta.charAt(3) - 49));
+                    } else {
+                        posDest.setLinha(jogadasCorreta.charAt(1) - 97);
+                        posDest.setColuna(7 - (jogadasCorreta.charAt(2) - 49));
                     }
                 }
-                Jogo.jogadas.add(new Jogada(peca, posDest , contMovComputador % 2 == 0, captura, xeque));
+                Jogo.jogadas.add(new Jogada(peca, posDest, contMovComputador % 2 == 0, captura, xeque));
             }
         }
 
@@ -215,6 +161,42 @@ public class Jogo {
         }
     }
 
+    private static void clearJogo() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Jogo.tabuleiroJogo[i][j] = null;
+            }
+        }
+    }
+
+    public static Peca[][] getJogo() {
+        return Jogo.tabuleiroJogo;
+    }
+
+    public static Peca getJogo(Pos posicao) {
+        return Jogo.tabuleiroJogo[posicao.getLinha()][posicao.getColuna()];
+    }
+
+    public static void apagaPosJogo(Pos posicaoDestino) {
+        Jogo.tabuleiroJogo[posicaoDestino.getLinha()][posicaoDestino.getColuna()] = null;
+        System.out.println("Apagou, linha: " + posicaoDestino.getLinha() + "coluna: " + posicaoDestino.getColuna());
+    }
+
+    public static void insereTabuleiroJogo(Peca[][] tabuleiroJogo) {
+        Jogo.tabuleiroJogo = tabuleiroJogo;
+    }
+
+    public static void inserePecaJogo(Peca peca) {
+        int linha = peca.getPosicao().getLinha();
+        int coluna = peca.getPosicao().getColuna();
+
+        if (linha >= 0 && linha <= 7 && coluna >= 0 && coluna <= 7)
+            tabuleiroJogo[linha][coluna] = peca;
+        else
+            System.out.println(" Inserção de peça inválida.");
+    }
+
+    //-------------------------
     public static boolean getCliqueDestino() {
         return cliqueDestino;
     }
@@ -222,14 +204,4 @@ public class Jogo {
     public static void switchCliqueDestino() {
         cliqueDestino = !cliqueDestino;
     }
-
-    public static void insereTabuleiro(Peca peca){
-        Jogo.tabuleiro[peca.getPosicao().getX()][peca.getPosicao().getY()] = peca;
-    }
-
-    public static Peca[][] getTabuleiro() {
-        return tabuleiro;
-    }
-
-
 }

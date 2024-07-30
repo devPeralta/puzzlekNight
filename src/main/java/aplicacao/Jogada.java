@@ -1,6 +1,5 @@
 package aplicacao;
 
-import aplicacao.pecas.Peca;
 import aplicacao.pecas.Pos;
 
 public class Jogada {
@@ -25,7 +24,7 @@ public class Jogada {
     public String toString() {
         return
                 "peca=" + this.peca +
-                ", posDest=(" + this.posDest.getX() + "," + this.posDest.getY() + ")" +
+                ", posDest=(" + this.posDest.getLinha() + "," + this.posDest.getColuna() + ")" +
                 ", movComputador=" + this.movComputador +
                 ", captura=" + this.captura +
                 ", xeque=" + this.xeque;

@@ -1,9 +1,11 @@
 package aplicacao.pecas;
 
-public class Peao extends Peca {
+import static aplicacao.pecas.Cor.BRANCO;
 
+public class Peao extends Peca {
+    private static final String caminhoImagem = "/aplicacao/pngPecas/peao";
     public boolean moveu = false;
-    public Peao(boolean cor, Pos posicao, char simbolo) {
+    public Peao(Cor cor, Pos posicao, char simbolo) {
         super(cor, simbolo, posicao);
     }
 
@@ -11,40 +13,37 @@ public class Peao extends Peca {
     public boolean testaMovimento (Pos posicaoAtual, Pos destino, Peca[][] tabuleiro) {
 
         if(estaNosLimites(destino)) {
-            if(!(destino.getX() == posicaoAtual.getX() && destino.getY() == posicaoAtual.getY())) { //nao eh a mesma casa
+            if(!(destino.getLinha() == posicaoAtual.getLinha() && destino.getColuna() == posicaoAtual.getColuna())) { //nao eh a mesma casa
 
                 // define o movimento de acordo com a cor
-                int valorMovimento;
+                int dirMovimento;
 
-                // branco
-                if(isCor()) {
-                    valorMovimento = -1;
-                }
-                // preto
-                else {
-                    valorMovimento = 1;
-                }
-                System.out.println("mov " + valorMovimento);
+                if(this.getCor() == BRANCO)
+                    dirMovimento = -1;
+                else
+                    dirMovimento = 1;
+
+                System.out.println("mov " + dirMovimento);
 
                 Peca pecaAtingida = pecaAtingida(destino, tabuleiro);
 
                 // movimento de uma casa
-                if(destino.getY() == posicaoAtual.getY() && destino.getX() == posicaoAtual.getX() + valorMovimento && pecaAtingida == null) {
+                if(destino.getColuna() == posicaoAtual.getColuna() && destino.getLinha() == posicaoAtual.getLinha() + dirMovimento && pecaAtingida == null) {
                     moveu = true;
                     return true;
                 }
 
                 // duas casas
-                if(destino.getY() == posicaoAtual.getY() && destino.getX() == posicaoAtual.getX() + valorMovimento*2) {
-                    if(moveu == false && pecaNaFrenteLinhaReta(destino, tabuleiro) == false) {
+                if(destino.getColuna() == posicaoAtual.getColuna() && destino.getLinha() == posicaoAtual.getLinha() + dirMovimento*2) {
+                    if(!moveu && !pecaNaFrenteLinhaReta(destino, tabuleiro)) {
                         moveu = true;
                         return true;
                     }
                 }
 
                 // diagonal capturando uma peça
-                if(Math.abs(destino.getY() - posicaoAtual.getY()) == 1 && destino.getX() == posicaoAtual.getX() + valorMovimento) {
-                    if(pecaAtingida != null && pecaAtingida.isCor() != isCor()) {
+                if(Math.abs(destino.getColuna() - posicaoAtual.getColuna()) == 1 && destino.getLinha() == posicaoAtual.getLinha() + dirMovimento) {
+                    if(pecaAtingida != null && pecaAtingida.getCor() != this.getCor()) {
                         moveu = true;
                         return true;
                     }
@@ -55,4 +54,7 @@ public class Peao extends Peca {
         return false;
     }
 
+    @Override public String getCaminhoImagem(){
+        return caminhoImagem;
+    }
 }
