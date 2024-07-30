@@ -12,19 +12,26 @@ public class Controle {
 
     //TODO: nao testado
     private static void movePeca(Pos posicaoDestino){
-        // Apaga posição original.
-        Jogo.apagaPosJogo(pecaSelecionada.getPosicao());
+        boolean movValido = pecaSelecionada.testaMovimento(pecaSelecionada.getPosicao(), posicaoDestino, Jogo.getJogo());
+        if(movValido){
+            // Apaga posição original.
+            Jogo.apagaPosJogo(pecaSelecionada.getPosicao());
 
-        // Atualiza posição de destino.
-        pecaSelecionada.setPosicao(posicaoDestino);
-        Jogo.inserePecaJogo(pecaSelecionada);
-        // Reset da selecao de peca.
-        prontoMov = false;
-        pecaSelecionada = null;
+            // Atualiza posição de destino.
+            pecaSelecionada.setPosicao(posicaoDestino);
+            Jogo.inserePecaJogo(pecaSelecionada);
+            // Reset da selecao de peca.
+            prontoMov = false;
+            pecaSelecionada = null;
 
-        Main.desenhaTabuleiro(Jogo.getJogo());
-        // Atualiza movimento no tabuleiro.
-        Main.atualizaTabuleiro();
+            Main.desenhaTabuleiro(Jogo.getJogo());
+            // Atualiza movimento no tabuleiro.
+            Main.atualizaTabuleiro();
+
+            System.out.println("!!!!! Movimento valido");
+        }
+        else
+            System.out.println("!!!!! Movimento invalido: " + posicaoDestino);
     }
 
     private static void movePecaPreta(){
@@ -56,13 +63,14 @@ public class Controle {
                 }
                 System.out.println("Posicao correta: " + posJogadaCorreta);
                 System.out.println("Posicao clicada: " + posicao);
-
+            /*
             if(Pos.posIguais(posJogadaCorreta, posicao)){
                 System.out.println("acertou");
             }
             else{
-                System.out.println("erou");
+                System.out.println("errou");
             }
+             */
         }
         // Primeiro Clique.
         else {

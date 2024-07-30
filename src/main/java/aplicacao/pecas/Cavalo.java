@@ -17,6 +17,7 @@ public class Cavalo extends Peca{
                 }
             }
         }
+        System.out.println("Esta nos limites:" + estaNosLimites(destino) + "Multi: "+ Math.abs(destino.getLinha() - posicaoAtual.getLinha()) * Math.abs(destino.getColuna() - posicaoAtual.getColuna()));
         return false;
     }
 
