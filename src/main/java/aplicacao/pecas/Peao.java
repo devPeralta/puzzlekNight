@@ -35,7 +35,7 @@ public class Peao extends Peca {
 
                 // duas casas
                 if(destino.getColuna() == posicaoAtual.getColuna() && destino.getLinha() == posicaoAtual.getLinha() + dirMovimento*2) {
-                    if(!moveu && !pecaNaFrenteLinhaReta(destino, tabuleiro)) {
+                    if(!moveu && !pecaNaFrenteLinhaReta(destino, tabuleiro) && pecaAtingida == null && posicaoAtual.getLinha() == 6) {
                         moveu = true;
                         return true;
                     }
