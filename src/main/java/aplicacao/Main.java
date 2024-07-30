@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import javafx.geometry.Pos;
 
 import java.io.IOException;
@@ -32,6 +33,10 @@ public class Main extends Application {
         BorderPane tela = getTela();
         tela.setLeft(tabuleiro);
 
+        // Cria e adiciona o menu à direita
+        VBox menu = criaMenu();
+        tela.setRight(menu);
+
         // Cria imagem de icone.
         URL recurso = getClass().getResource("/aplicacao/pngPecas/cavaloPreto.png");
         if (recurso != null) {
@@ -44,8 +49,6 @@ public class Main extends Application {
 
         // Define o titulo da janela.
         estagio.setTitle("Puzzle Knight");
-        estagio.setWidth(1100);
-        estagio.setHeight(800);
         estagio.setResizable(false);
 
         // Instancia scena
@@ -62,24 +65,43 @@ public class Main extends Application {
         Background background = new Background(backgroundFill);
         tela.setBackground(background);
 
-        // Espaçamento entre tabuleiro e tela.
+        // Espaçamento da tela.
         tela.setPadding(new Insets(20,20,20,20));
 
-        // Menu Lateral
-        HBox bottomBox = new HBox();
-        bottomBox.setAlignment(Pos.CENTER_RIGHT); // Mantém o alinhamento à direita
-        bottomBox.setPadding(new Insets(0, 10, 0, 0)); // Adiciona espaço à direita do botão
-
-        Button proxBotao = new Button("Próximo Puzzle");
-        bottomBox.getChildren().add(proxBotao);
-        tela.setBottom(bottomBox);
-
-        proxBotao.setOnAction(event -> {
-            Jogo.carregaNovoProblema();
-            tabuleiro.mostraPecas();
-        });
-
         return tela;
+    }
+
+    private VBox criaMenu() {
+        VBox menu = new VBox(20); // Espaçamento de 10 pixels entre os itens do menu
+        menu.setPadding(new Insets(40)); // Padding ao redor do menu
+        menu.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        menu.setAlignment(Pos.TOP_CENTER);
+
+        // Adiciona os elementos do menu
+        Label dificuldadeLabel = new Label("Difícil");
+        dificuldadeLabel.setTextFill(Color.RED);
+        dificuldadeLabel.setStyle("-fx-font-size: 34px;");
+
+        Label pontuacaoLabel = new Label("Pontuação: 30");
+        pontuacaoLabel.setTextFill(Color.WHITE);
+        pontuacaoLabel.setStyle("-fx-font-size: 34px;");
+
+        Label jogadaLabel = new Label("Brancas Jogam");
+        jogadaLabel.setTextFill(Color.WHITE);
+        jogadaLabel.setStyle("-fx-font-size: 28px;");
+
+        dificuldadeLabel.setAlignment(Pos.CENTER);
+        pontuacaoLabel.setAlignment(Pos.CENTER);
+        jogadaLabel.setAlignment(Pos.CENTER);
+
+
+        menu.getChildren().addAll(dificuldadeLabel, pontuacaoLabel, jogadaLabel);
+
+        // Adiciona um botão para o menu
+        Button menuButton = new Button("menu");
+        menu.getChildren().add(menuButton);
+
+        return menu;
     }
 
     public static void atualizaTabuleiro(){
