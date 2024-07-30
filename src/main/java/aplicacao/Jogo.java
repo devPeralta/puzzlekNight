@@ -34,7 +34,7 @@ public class Jogo {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String linhaFem = linhas.getFirst();
+        String linhaFem = linhas.get(0);
         String linhaProximasJogadas = linhas.get(2);
         int linhaTab = 0;
         int colunaTab = 0;
