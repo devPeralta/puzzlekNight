@@ -25,7 +25,7 @@ public class Jogo {
 
         clearJogo();
         // Lê problema.
-        Path problemaTeste1 = Paths.get("src/main/java/problemas/m2.txt");
+        Path problemaTeste1 = Paths.get("src/main/java/problemas/m3.txt");
 
         List<String> linhas;
         try {
@@ -101,11 +101,13 @@ public class Jogo {
         String[] jogadasCorretas = jogadas.split(" ");
         int contMovComputador=0;
         char peca;
+        Cor cor = BRANCO;
         boolean captura, xeque;
         boolean isPeao=false;
 
         for (String jogadasCorreta : jogadasCorretas) {
             Pos posDest = new Pos(0, 0);
+
             if (!Character.isDigit(jogadasCorreta.charAt(0))) {
                 contMovComputador++;
                 //System.out.println(jogada);
@@ -136,23 +138,30 @@ public class Jogo {
 
                 if (isPeao) {
                     if (captura) {
-                        posDest.setLinha(jogadasCorreta.charAt(1) - 97);
-                        posDest.setColuna(7 - (jogadasCorreta.charAt(2) - 49));
+                        posDest.setColuna(jogadasCorreta.charAt(1) - 97);
+                        posDest.setLinha(7 - (jogadasCorreta.charAt(2) - 49));
                     } else {
-                        posDest.setLinha(jogadasCorreta.charAt(0) - 97);
-                        posDest.setColuna(7 - (jogadasCorreta.charAt(1) - 49));
+                        posDest.setColuna(jogadasCorreta.charAt(0) - 97);
+                        posDest.setLinha(7 - (jogadasCorreta.charAt(1) - 49));
                     }
                 } else {
                     if (captura) {
-                        posDest.setLinha(jogadasCorreta.charAt(2) - 97);
-                        posDest.setColuna(7 - (jogadasCorreta.charAt(3) - 49));
+                        posDest.setColuna(jogadasCorreta.charAt(2) - 97);
+                        posDest.setLinha(7 - (jogadasCorreta.charAt(3) - 49));
                     } else {
-                        posDest.setLinha(jogadasCorreta.charAt(1) - 97);
-                        posDest.setColuna(7 - (jogadasCorreta.charAt(2) - 49));
+                        posDest.setColuna(jogadasCorreta.charAt(1) - 97);
+                        posDest.setLinha(7 - (jogadasCorreta.charAt(2) - 49));
                     }
                 }
                 Jogo.jogadas.add(new Jogada(peca, posDest, contMovComputador % 2 == 0, captura, xeque));
             }
+            /*
+            if(cor == BRANCO)
+                cor = PRETO;
+            else
+                cor = BRANCO;
+
+             */
         }
 
         for(Jogada jogada : Jogo.jogadas){

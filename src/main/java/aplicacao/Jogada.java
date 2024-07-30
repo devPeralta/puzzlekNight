@@ -1,5 +1,6 @@
 package aplicacao;
 
+import aplicacao.pecas.Peca;
 import aplicacao.pecas.Pos;
 
 public class Jogada {
