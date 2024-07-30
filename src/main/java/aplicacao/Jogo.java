@@ -17,6 +17,7 @@ public class Jogo {
     //Problema problema;
     private static Peca[][] tabuleiroJogo = new Peca[8][8];
     private static ArrayList<Jogada> jogadas = new ArrayList<>();
+    private static int jogadaAtual = 0;
 
     private static boolean cliqueDestino = false;  // false = clique é origem, true = clique é destino
 
@@ -211,6 +212,14 @@ public class Jogo {
             tabuleiroJogo[linha][coluna] = peca;
         else
             System.out.println(" Inserção de peça inválida.");
+    }
+
+    public static ArrayList<Jogada> getJogadas() {
+        return jogadas;
+    }
+
+    public static int getJogadaAtual() {
+        return jogadaAtual;
     }
 
     //-------------------------

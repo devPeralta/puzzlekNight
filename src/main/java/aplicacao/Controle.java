@@ -27,6 +27,10 @@ public class Controle {
         Main.atualizaTabuleiro();
     }
 
+    private static void movePecaPreta(){
+        //
+    }
+
     public static void registraClique(Pos posicao){
         Peca pecaClicada = null;
         boolean casaOcupada = Jogo.getJogo(posicao) != null;
@@ -34,17 +38,30 @@ public class Controle {
             pecaClicada = Jogo.getJogo(posicao);
 
         // Segundo clique, se já tiver feito um primeiro clique válido.
+
         if (Controle.prontoMov) {
-            boolean posDiferentes = !posicao.equals(pecaSelecionada.getPosicao());
-            if(posDiferentes) {
-                // Testa captura.
-                if (casaOcupada && pecaClicada.getCor() == PRETO) {
-                    movePeca(posicao);
+            Pos posJogadaCorreta = Jogo.getJogadas().get(Jogo.getJogadaAtual()).getPosDest();
+
+                boolean posDiferentes = !posicao.equals(pecaSelecionada.getPosicao());
+
+                if (posDiferentes) {
+                    // Testa captura.
+                    if (casaOcupada && pecaClicada.getCor() == PRETO) {
+                        movePeca(posicao);
+                    }
+                    // Movimento para casa vazia.
+                    if (!casaOcupada) {
+                        movePeca(posicao);
+                    }
                 }
-                // Movimento para casa vazia.
-                if (!casaOcupada) {
-                    movePeca(posicao);
-                }
+                System.out.println("Posicao correta: " + posJogadaCorreta);
+                System.out.println("Posicao clicada: " + posicao);
+
+            if(Pos.posIguais(posJogadaCorreta, posicao)){
+                System.out.println("acertou");
+            }
+            else{
+                System.out.println("erou");
             }
         }
         // Primeiro Clique.

@@ -25,6 +25,10 @@ public class Pos {
         this.linha = linha;
     }
 
+    public static boolean posIguais(Pos pos, Pos pos2){
+        return pos.getLinha() == pos2.getLinha() && pos.getColuna() == pos2.getColuna();
+    }
+
     @Override
     public String toString() {
         return "Pos{" +

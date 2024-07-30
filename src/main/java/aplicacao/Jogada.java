@@ -21,6 +21,10 @@ public class Jogada {
         this.xeque = xeque;
     }
 
+    public Pos getPosDest() {
+        return posDest;
+    }
+
     @Override
     public String toString() {
         return
