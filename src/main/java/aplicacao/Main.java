@@ -4,11 +4,12 @@ import aplicacao.pecas.Peca;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
+import javafx.geometry.Pos;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +44,8 @@ public class Main extends Application {
 
         // Define o titulo da janela.
         estagio.setTitle("Puzzle Knight");
-        // Impede o redimensionamento da janela
+        estagio.setWidth(1100);
+        estagio.setHeight(800);
         estagio.setResizable(false);
 
         // Instancia scena
@@ -54,12 +56,29 @@ public class Main extends Application {
 
     private static BorderPane getTela() {
         BorderPane tela = new BorderPane();
+
         // Cor de fundo.
         BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(backgroundFill);
         tela.setBackground(background);
+
         // Espaçamento entre tabuleiro e tela.
-        tela.setPadding(new Insets(20,400,20,20));
+        tela.setPadding(new Insets(20,20,20,20));
+
+        // Menu Lateral
+        HBox bottomBox = new HBox();
+        bottomBox.setAlignment(Pos.CENTER_RIGHT); // Mantém o alinhamento à direita
+        bottomBox.setPadding(new Insets(0, 10, 0, 0)); // Adiciona espaço à direita do botão
+
+        Button proxBotao = new Button("Próximo Puzzle");
+        bottomBox.getChildren().add(proxBotao);
+        tela.setBottom(bottomBox);
+
+        proxBotao.setOnAction(event -> {
+            Jogo.carregaNovoProblema();
+            tabuleiro.mostraPecas();
+        });
+
         return tela;
     }
 

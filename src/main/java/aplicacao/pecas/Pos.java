@@ -24,4 +24,12 @@ public class Pos {
     public void setLinha(int linha) {
         this.linha = linha;
     }
+
+    @Override
+    public String toString() {
+        return "Pos{" +
+                "linha=" + linha +
+                ", coluna=" + coluna +
+                '}';
+    }
 }
