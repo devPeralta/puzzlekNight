@@ -9,11 +9,12 @@ import static aplicacao.pecas.Cor.PRETO;
 public class Controle {
     private static Peca pecaSelecionada = null;
     private static boolean prontoMov = false;
+    private static boolean perdeu = false;
 
     //TODO: nao testado
     private static void movePeca(Pos posicaoDestino){
         boolean movValido = pecaSelecionada.testaMovimento(pecaSelecionada.getPosicao(), posicaoDestino, Jogo.getJogo());
-        if(movValido){
+        if(movValido && !isPerdeu()){
             // Apaga posição original.
             Jogo.apagaPosJogo(pecaSelecionada.getPosicao());
 
@@ -28,14 +29,21 @@ public class Controle {
             // Atualiza movimento no tabuleiro.
             Main.atualizaTabuleiro();
 
+            String femAtual = Jogo.getTurnos().get(Jogo.getTurnoAtual());
+            String femTabuleiro = Tabuleiro.getFem(Jogo.getTabuleiroJogo());
+            //System.out.println(femAtual);
+            //System.out.println(femTabuleiro);
+            if(Tabuleiro.getFem(Jogo.getTabuleiroJogo()).equals(femAtual)){
+                setPerdeu(false);
+            }
+            else{
+                setPerdeu(true);
+                System.out.println("!!!! PERDEU !!!!!!");
+            }
             System.out.println("!!!!! Movimento valido");
         }
         else
             System.out.println("!!!!! Movimento invalido: " + posicaoDestino);
-    }
-
-    private static void movePecaPreta(){
-        //
     }
 
     public static void registraClique(Pos posicao){
@@ -46,7 +54,7 @@ public class Controle {
 
         // Segundo clique, se já tiver feito um primeiro clique válido.
         if (Controle.prontoMov) {
-            Pos posJogadaCorreta = Jogo.getJogadas().get(Jogo.getJogadaAtual()).getPosDest();
+            //Pos posJogadaCorreta = Jogo.getJogadas().get(Jogo.getJogadaAtual()).getPosDest();
 
                 boolean posDiferentes = !posicao.equals(pecaSelecionada.getPosicao());
 
@@ -65,6 +73,11 @@ public class Controle {
                     if (!casaOcupada) {
                         movePeca(posicao);
                     }
+
+                    if(!isPerdeu()){
+                        Tabuleiro.atualizaTabuleiroJogadaBot();
+                        Jogo.setTurnoAtual(Jogo.getTurnoAtual() + 1);
+                    }
                 }
         }
         // Primeiro Clique.
@@ -75,5 +88,13 @@ public class Controle {
                 prontoMov = true;
             }
         }
+    }
+
+    public static boolean isPerdeu() {
+        return perdeu;
+    }
+
+    public static void setPerdeu(boolean perdeu) {
+        Controle.perdeu = perdeu;
     }
 }

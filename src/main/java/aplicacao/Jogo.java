@@ -16,8 +16,9 @@ import static java.nio.file.Files.readAllLines;
 public class Jogo {
     //Problema problema;
     private static Peca[][] tabuleiroJogo = new Peca[8][8];
-    private static ArrayList<Jogada> jogadas = new ArrayList<>();
-    private static int jogadaAtual = 0;
+    //private static ArrayList<Jogada> jogadas = new ArrayList<>();
+    private static ArrayList<String> turnos = new ArrayList<>();
+    private static int turnoAtual = 0;
 
     private static boolean cliqueDestino = false;  // false = clique é origem, true = clique é destino
 
@@ -26,7 +27,7 @@ public class Jogo {
 
         clearJogo();
         // Lê problema.
-        Path problemaTeste1 = Paths.get("src/main/java/problemas/m3.txt");
+        Path problemaTeste1 = Paths.get("src/main/java/problemas/m1.txt");
 
         List<String> linhas;
         try {
@@ -34,15 +35,15 @@ public class Jogo {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String linhaFem = linhas.get(0);
-        String linhaProximasJogadas = linhas.get(2);
+
+        leituraJogadasCorretas(linhas);
+        //leituraJogadasCorretas(linhaProximasJogadas);
+
         int linhaTab = 0;
         int colunaTab = 0;
 
-        leituraJogadasCorretas(linhaProximasJogadas);
-
-        for(int posCharLido=0;posCharLido<linhaFem.length();posCharLido++){
-            char caractere = linhaFem.charAt(posCharLido);
+        for(int posCharLido = 0; posCharLido<linhas.getFirst().length(); posCharLido++){
+            char caractere = linhas.getFirst().charAt(posCharLido);
             // Digitos indicam quantia de casas vazias.
             if(Character.isDigit(caractere)){
                 int casasVazias = Character.getNumericValue(caractere);
@@ -98,85 +99,25 @@ public class Jogo {
         }
     }
 
-    private static void leituraJogadasCorretas(String jogadas){
-        String[] jogadasCorretas = jogadas.split(" ");
-        int contMovComputador=0;
-        Peca novaPeca;
-        Cor cor = BRANCO;
-        boolean captura, xeque;
-        boolean isPeao=false;
-
-        for (String jogadasCorreta : jogadasCorretas) {
-            Pos posDest = new Pos(0, 0);
-
-            if (!Character.isDigit(jogadasCorreta.charAt(0))) {
-                contMovComputador++;
-                //System.out.println(jogada);
-                // Obtém caractere e simbolo de peça.
-                char tipoPeca = jogadasCorreta.charAt(0);
-                char simboloPeca = tipoPeca;
-                if(cor == PRETO)
-                    simboloPeca = Character.toLowerCase(tipoPeca);
-
-                switch (tipoPeca) {
-                    case 'K':
-                        novaPeca = new Rei(cor, new Pos(0, 0), simboloPeca);
-                        break;
-                    case 'R':
-                        novaPeca = new Torre(cor, new Pos(0, 0), simboloPeca);
-                        break;
-                    case 'N':
-                        novaPeca = new Cavalo(cor, new Pos(0, 0), simboloPeca);
-                        break;
-                    case 'B':
-                        novaPeca = new Bispo(cor, new Pos(0, 0), simboloPeca);
-                        break;
-                    case 'Q':
-                        novaPeca = new Rainha(cor, new Pos(0, 0), simboloPeca);
-                        break;
-                    //default é peão
-                    default:
-                        novaPeca = new Peao(cor, new Pos(0, 0), simboloPeca);
-                        isPeao = true;
-                        break;
-                }
-
-                captura = jogadasCorreta.charAt(0) == 'x' || jogadasCorreta.charAt(1) == 'x';
-                xeque = jogadasCorreta.charAt(jogadasCorreta.length() - 1) == '+';
-
-                if (isPeao) {
-                    if (captura) {
-                        posDest.setColuna(jogadasCorreta.charAt(1) - 97);
-                        posDest.setLinha(7 - (jogadasCorreta.charAt(2) - 49));
-                    } else {
-                        posDest.setColuna(jogadasCorreta.charAt(0) - 97);
-                        posDest.setLinha(7 - (jogadasCorreta.charAt(1) - 49));
-                    }
-                } else {
-                    if (captura) {
-                        posDest.setColuna(jogadasCorreta.charAt(2) - 97);
-                        posDest.setLinha(7 - (jogadasCorreta.charAt(3) - 49));
-                    } else {
-                        posDest.setColuna(jogadasCorreta.charAt(1) - 97);
-                        posDest.setLinha(7 - (jogadasCorreta.charAt(2) - 49));
-                    }
-                }
-
-                novaPeca.setPosicao(new Pos(posDest.getLinha(), posDest.getColuna()));
-                Jogo.jogadas.add(new Jogada(novaPeca, posDest, contMovComputador % 2 == 0, captura, xeque));
-
-                // Alterna a cor da peça conforme lê os movimentos.
-                if(cor == BRANCO)
-                    cor = PRETO;
-                else
-                    cor = BRANCO;
+    private static void leituraJogadasCorretas(List<String> linhas){
+        for(int i=1;i<linhas.size();i++){
+            if(linhas.get(i) != null && !linhas.get(i).isEmpty()){
+                Jogo.turnos.add(linhas.get(i));
+            }
+            else{
+                i=linhas.size();
             }
         }
 
-        for(Jogada jogada : Jogo.jogadas){
-            int posicao = Jogo.jogadas.indexOf(jogada) + 1;
-            System.out.println(posicao + "º:" + jogada);
+        for(int i=0;i<Jogo.turnos.size();i++){
+            System.out.println(Jogo.turnos.get(i));
         }
+    }
+
+    private static boolean checaTabuleiro(){
+        //
+
+        return true;
     }
 
     private static void clearJogo() {
@@ -214,12 +155,24 @@ public class Jogo {
             System.out.println(" Inserção de peça inválida.");
     }
 
-    public static ArrayList<Jogada> getJogadas() {
-        return jogadas;
+    public static int getTurnoAtual() {
+        return turnoAtual;
     }
 
-    public static int getJogadaAtual() {
-        return jogadaAtual;
+    public static void setTurnoAtual(int turnoAtual) {
+        Jogo.turnoAtual = turnoAtual;
+    }
+
+    public static Peca[][] getTabuleiroJogo() {
+        return tabuleiroJogo;
+    }
+
+    public static void setPecaTabuleiroJogo(Peca peca) {
+        Jogo.tabuleiroJogo[peca.getPosicao().getLinha()][peca.getPosicao().getColuna()] = peca;
+    }
+
+    public static ArrayList<String> getTurnos() {
+        return turnos;
     }
 
     //-------------------------

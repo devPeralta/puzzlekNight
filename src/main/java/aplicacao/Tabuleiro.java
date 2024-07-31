@@ -1,7 +1,6 @@
 package aplicacao;
-import aplicacao.pecas.Peca;
+import aplicacao.pecas.*;
 
-import aplicacao.pecas.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -81,6 +80,105 @@ public class Tabuleiro extends GridPane {
                 }
             }
         }
+    }
+
+     public static void atualizaTabuleiroJogadaBot(){
+        String tabuleiroAtual = Jogo.getTurnos().get(Jogo.getTurnoAtual() + 1);
+
+        System.out.println(tabuleiroAtual);
+        String [] linha = tabuleiroAtual.split("/");
+        for(int lin=0;lin<linha.length;lin++){
+            int col=0;
+            for(char caractere : linha[lin].toCharArray()){
+                Peca novaPeca = null;
+                if(Character.isDigit(caractere)){
+                    //System.out.println("Digito: " + caractere);
+                    for(int i=0;i<Character.getNumericValue(caractere);i++){
+                        Jogo.apagaPosJogo(new Pos(lin, col));
+                        col++;
+                    }
+                }
+                else{
+                    Cor cor;
+                    if(Character.isUpperCase(caractere)){
+                        cor = BRANCO;
+                    }
+                    else{
+                        cor = Cor.PRETO;
+                    }
+                    caractere = Character.toLowerCase(caractere);
+                    switch(caractere) {
+                        case 'k':
+                            novaPeca = new Rei(cor, new Pos(lin, col), caractere);
+                            break;
+                        case 'r':
+                            novaPeca = new Torre(cor, new Pos(lin, col), caractere);
+                            break;
+                        case 'n':
+                            novaPeca = new Cavalo(cor, new Pos(lin, col), caractere);
+                            break;
+                        case 'b':
+                            novaPeca = new Bispo(cor, new Pos(lin, col), caractere);
+                            break;
+                        case 'q':
+                            novaPeca = new Rainha(cor, new Pos(lin, col), caractere);
+                            break;
+                        case 'p':
+                            novaPeca = new Peao(cor, new Pos(lin, col), caractere);
+                            break;
+                        default:
+                            System.out.println("Leitura do tabuleiro nao implementada");
+                            break;
+                    }
+                    Jogo.setPecaTabuleiroJogo(novaPeca);
+                    col++;
+                }
+            }
+            System.out.println();
+        }
+        Main.desenhaTabuleiro(Jogo.getJogo());
+        Main.atualizaTabuleiro();
+        Jogo.setTurnoAtual(Jogo.getTurnoAtual() + 1);
+        //System.out.println(Tabuleiro.getFem(Jogo.getTabuleiroJogo()));
+    }
+
+    public static String getFem(Peca[][] tabuleiro){
+        String fem = "";
+        int somaFem=0;
+        int contBarra=0;
+
+        for(int i=0;i<tabuleiro.length;i++){
+            for(int j=0;j<tabuleiro[i].length;j++){
+                if(tabuleiro[i][j] == null) {
+                    somaFem++;
+                }
+                else if(somaFem!=8){
+                    if(somaFem !=0){
+                        fem = fem.concat(somaFem + "");
+                    }
+                    somaFem=0;
+                    if(tabuleiro[i][j].getCor() == BRANCO){
+                        fem = fem.concat( Character.toUpperCase(tabuleiro[i][j].getSimbolo())+ "");
+                    }
+                    else{
+                        fem =  fem.concat( tabuleiro[i][j].getSimbolo()+ "");
+                    }
+                }
+            }
+            if(somaFem!=0){
+                fem = fem.concat(somaFem +"");
+                if( contBarra!=7){
+                    fem = fem.concat("/");
+                }
+                contBarra++;
+                somaFem=0;
+            }
+            else if(i!=0 && contBarra!=7){
+                fem = fem.concat("/");
+                contBarra++;
+            }
+        }
+        return fem;
     }
 
     private String getCaminhoPeca(Peca peca) {
