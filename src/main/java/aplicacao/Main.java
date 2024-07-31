@@ -87,7 +87,7 @@ public class Main extends Application {
         Label tituloLabel = new Label("Puzzle Knight");
         tituloLabel.setTextFill(Color.WHITE);
         tituloLabel.setStyle("-fx-font-size: 34px;");
-
+        //Teste
         Label jogadaLabel = new Label("Brancas Jogam");
         jogadaLabel.setTextFill(Color.WHITE);
         jogadaLabel.setStyle("-fx-font-size: 28px;");
