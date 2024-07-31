@@ -27,7 +27,7 @@ public class Jogo {
 
         clearJogo();
         // Lê problema.
-        Path problemaTeste1 = Paths.get("src/main/java/problemas/m1.txt");
+        Path problemaTeste1 = Paths.get("src/main/java/problemas/m5.txt");
 
         List<String> linhas;
         try {

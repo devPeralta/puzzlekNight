@@ -1,3 +1,8 @@
-2bQN2k/p6P/6p1/1q2p1P1/2p5/b7/1rP2P2/K3R2R
+r3k2r/5ppp/p1q1pn2/2b5/Np3P2/1p2P3/2Q3PP/R1BR2K1
+r3k2r/5ppp/p1q1pn2/2Q5/Np3P2/1p2P3/6PP/R1BR2K1
+r3k2r/5ppp/p3pn2/2q5/Np3P2/1p2P3/6PP/R1BR2K1
+r3k2r/5ppp/p3pn2/2N5/1p3P2/1p2P3/6PP/R1BR2K1
 
-39... Ra2+ 40. Kxa2 Qb2#
+
+
+https://lichess.org/analysis/r3k2r/5ppp/p1q1pn2/2b5/Np3P2/1p2P3/2Q3PP/R1BR2K1_w_kq_-_0_21?color=white#43
