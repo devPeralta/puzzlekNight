@@ -1,7 +1,7 @@
 package aplicacao;
-import aplicacao.pecas.Peca;
+import aplicacao.pecas.*;
 
-import aplicacao.pecas.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -11,13 +11,12 @@ import javafx.scene.layout.StackPane;
 
 import java.net.URL;
 
-import static aplicacao.pecas.Cor.BRANCO;
-
-public class Tabuleiro extends GridPane {
+public class InterfaceTabuleiro extends GridPane {
     public static final int tamCasa = 80;
     private StackPane[][] casas = new StackPane[8][8];
+    Label movimentoLabel = new Label("");
 
-    public Tabuleiro() {
+    public InterfaceTabuleiro() {
         setHgap(0);  // Sem espaçamento entre as células
         setVgap(0);  // Sem espaçamento entre as células
 
@@ -30,28 +29,28 @@ public class Tabuleiro extends GridPane {
                 stackPane.getChildren().add(quadrado);
                 stackPane.setId("casa_" + linha + "_" + coluna); // Identificador
 
-                // Hanlder para quando uma casa é clicada.
+                // Handler para quando uma casa é clicada.
                 stackPane.setOnMouseClicked(event -> {
                     int linhaClicada = Integer.parseInt(stackPane.getId().split("_")[1]);
                     int colunaClicada = Integer.parseInt(stackPane.getId().split("_")[2]);
-                    System.out.println("Casa Clicado: " + linhaClicada + ", " + colunaClicada);
-                    Controle.registraClique(new Pos(linhaClicada, colunaClicada));
+                    ControleJogada.registraClique(new Pos(linhaClicada, colunaClicada));
                 });
 
                 add(stackPane, coluna, linha);
                 casas[linha][coluna] = stackPane;
             }
         }
-        mostraPecas();
+        atualizaTabuleiro();
     }
 
-    public void mostraPecas() {
+    public void atualizaTabuleiro() {
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
                 Peca peca = Jogo.getJogo(new Pos(linha, coluna));
                 atualizaCelula(linha, coluna, peca);
             }
         }
+
     }
 
     private void atualizaCelula(int linha, int coluna, Peca peca) {
@@ -83,12 +82,51 @@ public class Tabuleiro extends GridPane {
         }
     }
 
+    public static String getFem(Peca[][] tabuleiro){
+        String fem = "";
+        int somaFem=0;
+        int contBarra=0;
+
+        for(int i=0;i<tabuleiro.length;i++){
+            for(int j=0;j<tabuleiro[i].length;j++){
+                if(tabuleiro[i][j] == null) {
+                    somaFem++;
+                }
+                else if(somaFem!=8){
+                    if(somaFem !=0){
+                        fem = fem.concat(somaFem + "");
+                    }
+                    somaFem=0;
+                    if(tabuleiro[i][j].getCor() == Cor.BRANCO){
+                        fem = fem.concat( Character.toUpperCase(tabuleiro[i][j].getSimbolo())+ "");
+                    }
+                    else{
+                        fem =  fem.concat( tabuleiro[i][j].getSimbolo()+ "");
+                    }
+                }
+            }
+            if(somaFem!=0){
+                fem = fem.concat(somaFem +"");
+                if( contBarra!=7){
+                    fem = fem.concat("/");
+                }
+                contBarra++;
+                somaFem=0;
+            }
+            else if(i!=0 && contBarra!=7){
+                fem = fem.concat("/");
+                contBarra++;
+            }
+        }
+        return fem;
+    }
+
     private String getCaminhoPeca(Peca peca) {
         String caminho = "";
         if (peca != null) {
             caminho = peca.getCaminhoImagem();
             if (!caminho.isEmpty()) {
-                if (peca.getCor() == BRANCO)
+                if (peca.getCor() == Cor.BRANCO)
                     caminho += "Branco.png";
                 else
                     caminho += "Preto.png";

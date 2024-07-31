@@ -1,12 +1,11 @@
 package aplicacao.pecas;
 
-public class Peca {
+public class Peca implements Cloneable{
 
     private Cor cor; // 0 = branco, 1 = preto
     private char simbolo; // 'p' = peão, 'r' = torre, 'k' = cavalo, 'b' = bispo, 'q' = rainha, 'k' = rei
     private Pos posicao;
     private static final int DIMENSAO = 8;
-    //private Peca tabuleiro[][];
 
     public Peca(Cor cor, char simbolo, Pos posicao) {
         this.cor = cor;
@@ -160,4 +159,14 @@ public class Peca {
                 '}';
     }
 
+    @Override
+    public Peca clone() {
+        try {
+            Peca clone = (Peca) super.clone();
+            clone.posicao = new Pos(this.posicao.getLinha(), this.posicao.getColuna());
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

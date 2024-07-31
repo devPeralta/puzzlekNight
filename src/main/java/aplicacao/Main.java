@@ -14,12 +14,11 @@ import javafx.geometry.Pos;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 
 import static aplicacao.pecas.Cor.BRANCO;
 
 public class Main extends Application {
-    public static Tabuleiro tabuleiro;
+    public static InterfaceTabuleiro tabuleiro;
 
     public static void main(String[] args) throws IOException {
         Jogo.carregaNovoProblema();
@@ -29,9 +28,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage estagio) {
-        tabuleiro = new Tabuleiro();
+        tabuleiro = new InterfaceTabuleiro();
         BorderPane tela = getTela();
         tela.setLeft(tabuleiro);
+
 
         // Cria e adiciona o menu à direita
         VBox menu = criaMenu();
@@ -77,35 +77,69 @@ public class Main extends Application {
         menu.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         menu.setAlignment(Pos.TOP_CENTER);
 
-        // Adiciona os elementos do menu
-        Label dificuldadeLabel = new Label("Difícil");
-        dificuldadeLabel.setTextFill(Color.RED);
-        dificuldadeLabel.setStyle("-fx-font-size: 34px;");
+        addLabels(menu);
+        addBotoes(menu);
+        return menu;
+    }
 
-        Label pontuacaoLabel = new Label("Pontuação: 30");
-        pontuacaoLabel.setTextFill(Color.WHITE);
-        pontuacaoLabel.setStyle("-fx-font-size: 34px;");
+    private static void addLabels(VBox menu){
+        // Adiciona os elementos do menu
+        Label tituloLabel = new Label("Puzzle Knight");
+        tituloLabel.setTextFill(Color.WHITE);
+        tituloLabel.setStyle("-fx-font-size: 34px;");
 
         Label jogadaLabel = new Label("Brancas Jogam");
         jogadaLabel.setTextFill(Color.WHITE);
         jogadaLabel.setStyle("-fx-font-size: 28px;");
 
-        dificuldadeLabel.setAlignment(Pos.CENTER);
-        pontuacaoLabel.setAlignment(Pos.CENTER);
+        tituloLabel.setAlignment(Pos.CENTER);
         jogadaLabel.setAlignment(Pos.CENTER);
 
+        // Label para o movimento
+        tabuleiro.movimentoLabel.setTextFill(Color.GREEN);
+        tabuleiro.movimentoLabel.setStyle("-fx-font-size: 28px;");
+        tabuleiro.movimentoLabel.setAlignment(Pos.CENTER);
 
-        menu.getChildren().addAll(dificuldadeLabel, pontuacaoLabel, jogadaLabel);
+        menu.getChildren().addAll(tituloLabel, jogadaLabel, tabuleiro.movimentoLabel);
+    }
 
-        // Adiciona um botão para o menu
-        Button menuButton = new Button("menu");
-        menu.getChildren().add(menuButton);
+    private static void addBotoes(VBox menu){
+        // Adiciona botões "Voltar" e "Próximo"
+        Button voltarButton = new Button("Voltar");
+        Button proximoButton = new Button("Próximo");
 
-        return menu;
+        // Estiliza os botões
+        String buttonStyle = "-fx-background-color: #333333; -fx-text-fill: white; " +
+                "-fx-font-size: 18px; -fx-padding: 10px 20px; -fx-border-radius: 5px; -fx-background-radius: 5px;";
+        voltarButton.setStyle(buttonStyle);
+        proximoButton.setStyle(buttonStyle);
+
+        // Adiciona ação ao botão "Voltar"
+        voltarButton.setOnAction(event -> ControleJogada.voltaJogada());
+
+        HBox buttonBox = new HBox(20); // Espaçamento de 20 pixels entre os botões
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.getChildren().addAll(voltarButton, proximoButton);
+
+        menu.getChildren().add(buttonBox);
     }
 
     public static void atualizaTabuleiro(){
-        tabuleiro.mostraPecas();
+        tabuleiro.atualizaTabuleiro();
+        System.out.println("Turno:" + Jogo.getTurnoAtual());
+    }
+
+    public static void atualizaMenu(EstadoMovimento estadoMovimento){
+        if (estadoMovimento == EstadoMovimento.CORRETO) {
+            tabuleiro.movimentoLabel.setText("Correto");
+            tabuleiro.movimentoLabel.setTextFill(Color.GREEN);
+        } else if(estadoMovimento == EstadoMovimento.ERRADO){
+            tabuleiro.movimentoLabel.setText("Incorreto");
+            tabuleiro.movimentoLabel.setTextFill(Color.RED);
+        }
+        else{
+            tabuleiro.movimentoLabel.setText("");
+        }
     }
 
     public static void desenhaTabuleiro(Peca[][] tabuleiro) {

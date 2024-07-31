@@ -23,8 +23,6 @@ public class Peao extends Peca {
                 else
                     dirMovimento = 1;
 
-                System.out.println("mov " + dirMovimento);
-
                 Peca pecaAtingida = pecaAtingida(destino, tabuleiro);
 
                 // movimento de uma casa
@@ -35,7 +33,7 @@ public class Peao extends Peca {
 
                 // duas casas
                 if(destino.getColuna() == posicaoAtual.getColuna() && destino.getLinha() == posicaoAtual.getLinha() + dirMovimento*2) {
-                    if(!moveu && !pecaNaFrenteLinhaReta(destino, tabuleiro) && pecaAtingida == null) {
+                    if(!moveu && !pecaNaFrenteLinhaReta(destino, tabuleiro) && pecaAtingida == null && posicaoAtual.getLinha() == 6) {
                         moveu = true;
                         return true;
                     }
