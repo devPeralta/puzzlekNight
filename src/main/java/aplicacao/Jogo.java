@@ -17,7 +17,7 @@ public class Jogo {
     //Problema problema;
     private static Peca[][] tabuleiroJogo = new Peca[8][8];
     //private static ArrayList<Jogada> jogadas = new ArrayList<>();
-    private static ArrayList<String> turnos = new ArrayList<>();
+    private static ArrayList<String> movimentos = new ArrayList<>();
     private static int turnoAtual = 0;
 
     private static boolean cliqueDestino = false;  // false = clique é origem, true = clique é destino
@@ -26,8 +26,10 @@ public class Jogo {
         // TODO:Cria valor randômico para selecionar problema.
 
         clearJogo();
+        ControleJogada.resetEstadoMov();
+        ControleJogada.resetQuantMov();
         // Lê problema.
-        Path problemaTeste1 = Paths.get("src/main/java/problemas/m5.txt");
+        Path problemaTeste1 = Paths.get("src/main/java/problemas/m4.txt");
 
         List<String> linhas;
         try {
@@ -36,18 +38,25 @@ public class Jogo {
             throw new RuntimeException(e);
         }
 
-        leituraJogadasCorretas(linhas);
-        //leituraJogadasCorretas(linhaProximasJogadas);
+        // Salva posições do problema.
+        leituraJogadas(linhas);
+        // Atualiza posição.
+        atualizaJogo(linhas.getFirst());
 
+    }
+
+    public static void atualizaJogo(String linhaFem){
         int linhaTab = 0;
         int colunaTab = 0;
 
-        for(int posCharLido = 0; posCharLido<linhas.getFirst().length(); posCharLido++){
-            char caractere = linhas.getFirst().charAt(posCharLido);
+        for(int posCharLido = 0; posCharLido<linhaFem.length(); posCharLido++){
+            char caractere = linhaFem.charAt(posCharLido);
             // Digitos indicam quantia de casas vazias.
             if(Character.isDigit(caractere)){
                 int casasVazias = Character.getNumericValue(caractere);
-                colunaTab += casasVazias;
+                for(int i = 0; i < casasVazias; i++, colunaTab++){
+                    tabuleiroJogo[linhaTab][colunaTab] = null;
+                }
             }
             else{
                 Cor cor;
@@ -99,18 +108,18 @@ public class Jogo {
         }
     }
 
-    private static void leituraJogadasCorretas(List<String> linhas){
-        for(int i=1;i<linhas.size();i++){
+    private static void leituraJogadas(List<String> linhas){
+        for(int i=0;i<linhas.size();i++){
             if(linhas.get(i) != null && !linhas.get(i).isEmpty()){
-                Jogo.turnos.add(linhas.get(i));
+                Jogo.movimentos.add(linhas.get(i));
             }
             else{
                 i=linhas.size();
             }
         }
 
-        for(int i=0;i<Jogo.turnos.size();i++){
-            System.out.println(Jogo.turnos.get(i));
+        for(int i = 0; i<Jogo.movimentos.size(); i++){
+            System.out.println(Jogo.movimentos.get(i));
         }
     }
 
@@ -159,8 +168,15 @@ public class Jogo {
         return turnoAtual;
     }
 
-    public static void setTurnoAtual(int turnoAtual) {
-        Jogo.turnoAtual = turnoAtual;
+    public static void addTurno() {
+        Jogo.turnoAtual += 1;
+    }
+    public static void subTurno() {
+        Jogo.turnoAtual -= 1;
+    }
+
+    public static void resetaTabuleiro(){
+        atualizaJogo(movimentos.get(turnoAtual));
     }
 
     public static Peca[][] getTabuleiroJogo() {
@@ -171,8 +187,8 @@ public class Jogo {
         Jogo.tabuleiroJogo[peca.getPosicao().getLinha()][peca.getPosicao().getColuna()] = peca;
     }
 
-    public static ArrayList<String> getTurnos() {
-        return turnos;
+    public static ArrayList<String> getMovimentos() {
+        return movimentos;
     }
 
     //-------------------------
