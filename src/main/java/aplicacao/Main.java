@@ -90,6 +90,8 @@ public class Main extends Application {
         jogadaLabel.setTextFill(Color.WHITE);
         jogadaLabel.setStyle("-fx-font-size: 28px;");
 
+
+
         dificuldadeLabel.setAlignment(Pos.CENTER);
         pontuacaoLabel.setAlignment(Pos.CENTER);
         jogadaLabel.setAlignment(Pos.CENTER);

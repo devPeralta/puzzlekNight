@@ -10,10 +10,11 @@ public class Controle {
     private static Peca pecaSelecionada = null;
     private static boolean prontoMov = false;
     private static boolean perdeu = false;
+    private static boolean movValido = true;
 
     //TODO: nao testado
     private static void movePeca(Pos posicaoDestino){
-        boolean movValido = pecaSelecionada.testaMovimento(pecaSelecionada.getPosicao(), posicaoDestino, Jogo.getJogo());
+        Controle.movValido = pecaSelecionada.testaMovimento(pecaSelecionada.getPosicao(), posicaoDestino, Jogo.getJogo());
         if(movValido && !isPerdeu()){
             // Apaga posição original.
             Jogo.apagaPosJogo(pecaSelecionada.getPosicao());
@@ -42,8 +43,10 @@ public class Controle {
             }
             System.out.println("!!!!! Movimento valido");
         }
-        else
+        else{
             System.out.println("!!!!! Movimento invalido: " + posicaoDestino);
+        }
+
     }
 
     public static void registraClique(Pos posicao){
@@ -74,7 +77,7 @@ public class Controle {
                         movePeca(posicao);
                     }
 
-                    if(!isPerdeu()){
+                    if(!isPerdeu() && movValido){
                         Tabuleiro.atualizaTabuleiroJogadaBot();
                         Jogo.setTurnoAtual(Jogo.getTurnoAtual() + 1);
                     }
