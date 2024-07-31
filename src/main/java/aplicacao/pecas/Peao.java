@@ -23,8 +23,6 @@ public class Peao extends Peca {
                 else
                     dirMovimento = 1;
 
-                System.out.println("mov " + dirMovimento);
-
                 Peca pecaAtingida = pecaAtingida(destino, tabuleiro);
 
                 // movimento de uma casa

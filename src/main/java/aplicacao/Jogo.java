@@ -42,8 +42,8 @@ public class Jogo {
         int linhaTab = 0;
         int colunaTab = 0;
 
-        for(int posCharLido = 0; posCharLido<linhas.getFirst().length(); posCharLido++){
-            char caractere = linhas.getFirst().charAt(posCharLido);
+        for(int posCharLido = 0; posCharLido<linhas.get(0).length(); posCharLido++){
+            char caractere = linhas.get(0).charAt(posCharLido);
             // Digitos indicam quantia de casas vazias.
             if(Character.isDigit(caractere)){
                 int casasVazias = Character.getNumericValue(caractere);
